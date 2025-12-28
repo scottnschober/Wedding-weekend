@@ -1448,15 +1448,15 @@
                 if (!response.ok) throw new Error('Failed to load');
                 
                 const csvText = await response.text();
-                guestData = parseCSV(csvText).filter(guest => guest.name || guest.Name);
+                guestData = parseCSV(csvText).filter(guest => guest['Guest Name'] || guest.name || guest.Name);
                 
-                // Normalize column names
+                // Normalize column names to match what the code expects
                 guestData = guestData.map(g => ({
-                    name: g.name || g.Name || g['Guest Name'] || '',
-                    table: g.table || g.Table || '',
-                    section: g.section || g.Section || '',
-                    coupleId: g.coupleId || g.couple_ID || g['couple_ID'] || '',
-                    notes: g.notes || g.Notes || ''
+                    name: g['Guest Name'] || g.name || g.Name || '',
+                    table: g.Table || g.table || '',
+                    section: g.Section || g.section || '',
+                    coupleId: g['Couple ID'] || g.coupleId || g.couple_ID || g['couple_ID'] || '',
+                    notes: g.Notes || g.notes || ''
                 }));
                     
             } catch (error) {

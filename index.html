@@ -527,17 +527,10 @@
 
         /* Photo Gallery Styles */
         .gallery-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            justify-content: center;
-        }
-
-        .gallery-row {
-            display: flex;
-            gap: 4px;
-            width: 100%;
-            margin-bottom: 4px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
         }
 
         .gallery-item {
@@ -545,19 +538,25 @@
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
-            flex-grow: 1;
+            background: #f5f5f5;
+            border-radius: 4px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
             transition: transform 0.3s ease;
         }
 
         .gallery-item:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .gallery-item:hover img {
@@ -1264,7 +1263,7 @@
                 }
                 
                 allPhotos = data.files;
-                renderJustifiedGallery(allPhotos);
+                renderGallery(allPhotos);
                 
                 document.getElementById('photo-gallery-loading').style.display = 'none';
                 document.getElementById('photo-gallery').style.display = 'block';
@@ -1275,68 +1274,25 @@
             }
         }
 
-        function renderJustifiedGallery(photos) {
+        function renderGallery(photos) {
             const container = document.getElementById('gallery-grid');
             container.innerHTML = '';
             
-            // Justified layout settings
-            const targetRowHeight = 250;
-            const containerWidth = container.offsetWidth || 1000;
-            const spacing = 4;
-            
-            let currentRow = [];
-            let currentRowWidth = 0;
-            
             photos.forEach((photo, index) => {
-                // Assume 16:9 ratio for photos (will be adjusted with actual dimensions)
-                const aspectRatio = 1.5;
-                const photoWidth = targetRowHeight * aspectRatio;
-                
-                currentRow.push({ photo, index, width: photoWidth });
-                currentRowWidth += photoWidth + spacing;
-                
-                // Check if row is full
-                if (currentRowWidth >= containerWidth || index === photos.length - 1) {
-                    renderRow(currentRow, containerWidth, targetRowHeight, container);
-                    currentRow = [];
-                    currentRowWidth = 0;
-                }
-            });
-        }
-
-        function renderRow(rowPhotos, containerWidth, targetHeight, container) {
-            if (rowPhotos.length === 0) return;
-            
-            const row = document.createElement('div');
-            row.className = 'gallery-row';
-            
-            // Calculate total width needed
-            const totalWidth = rowPhotos.reduce((sum, item) => sum + item.width, 0);
-            const spacing = 4 * (rowPhotos.length - 1);
-            const scale = (containerWidth - spacing) / totalWidth;
-            
-            rowPhotos.forEach(({ photo, index, width }) => {
-                const scaledWidth = width * scale;
-                const scaledHeight = targetHeight * scale;
-                
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
-                item.style.width = `${scaledWidth}px`;
-                item.style.height = `${scaledHeight}px`;
                 
                 const img = document.createElement('img');
-                // Use thumbnail for gallery, webContentLink for lightbox
-                img.src = photo.thumbnailLink || `https://drive.google.com/uc?export=view&id=${photo.id}`;
+                // Use thumbnailLink for gallery view
+                img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
                 img.alt = photo.name;
                 img.loading = 'lazy';
                 
                 item.appendChild(img);
                 item.onclick = () => openLightbox(index);
                 
-                row.appendChild(item);
+                container.appendChild(item);
             });
-            
-            container.appendChild(row);
         }
 
         // Lightbox Functions
@@ -1362,7 +1318,9 @@
             const img = document.getElementById('lightbox-img');
             const caption = document.getElementById('lightbox-caption');
             
-            img.src = `https://drive.google.com/uc?export=view&id=${photo.id}`;
+            // Use the proper Google Drive image URL
+            img.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1920`;
+            img.alt = photo.name;
             caption.textContent = photo.name;
         }
 
@@ -1410,8 +1368,29 @@
             document.getElementById(sectionId).classList.add('active');
             event.target.classList.add('active');
             
+            // Save current tab to localStorage
+            localStorage.setItem('activeTab', sectionId);
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Restore active tab on page load
+        window.addEventListener('load', () => {
+            const savedTab = localStorage.getItem('activeTab');
+            if (savedTab && document.getElementById(savedTab)) {
+                // Remove default active state
+                document.querySelector('.section.active')?.classList.remove('active');
+                document.querySelector('.nav-tab.active')?.classList.remove('active');
+                
+                // Set saved tab as active
+                document.getElementById(savedTab).classList.add('active');
+                const tabButton = Array.from(document.querySelectorAll('.nav-tab'))
+                    .find(btn => btn.textContent.trim().toLowerCase() === savedTab.toLowerCase());
+                if (tabButton) {
+                    tabButton.classList.add('active');
+                }
+            }
+        });
 
         // Map Interaction
         document.querySelectorAll('.map-location').forEach(location => {

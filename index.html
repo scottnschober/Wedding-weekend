@@ -937,11 +937,14 @@
 
         <!-- PHOTOS SECTION -->
         <section id="photos" class="section">
-            <h2 class="section-title">Wedding Weekend Photos</h2>
+            <h2 class="section-title">Wedding Weekend Photos & Videos</h2>
             
             <div class="welcome-box" style="margin-bottom: 2rem;">
                 <p class="welcome-text" style="font-size: 1rem; margin-bottom: 1rem;">
                     We'd love to see your photos from the entire weekend - not just the wedding ceremony! Pool days, dinners, candid moments, and everything in between.
+                </p>
+                <p class="welcome-text" style="font-size: 0.9rem; color: var(--warm-gray); margin-bottom: 0.5rem;">
+                    <strong>iPhone Users:</strong> Please disable Live Photos before taking pictures (tap the Live Photo icon at the top of the camera to turn it off). This ensures photos display properly on the website.
                 </p>
                 <p class="welcome-text" style="font-size: 0.9rem; color: var(--warm-gray); margin-bottom: 1.5rem;">
                     Please keep all photos tasteful.
@@ -958,15 +961,27 @@
                         transition: all 0.3s ease;
                         letter-spacing: 0.05em;
                     " onmouseover="this.style.background='var(--dark-gray)'" onmouseout="this.style.background='var(--accent)'">
-                        📸 Upload Your Photos
+                        📸 Upload Your Photos & Videos
                     </a>
                 </div>
             </div>
 
-            <!-- Photo Gallery -->
-            <div id="photo-gallery-loading" class="loading">Loading photos...</div>
-            <div id="photo-gallery" style="display: none;">
-                <div id="gallery-grid" class="gallery-grid"></div>
+            <!-- Photos Gallery -->
+            <div style="margin-bottom: 3rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark-gray);">Photos</h3>
+                <div id="photo-gallery-loading" class="loading">Loading photos...</div>
+                <div id="photo-gallery" style="display: none;">
+                    <div id="gallery-grid" class="gallery-grid"></div>
+                </div>
+            </div>
+
+            <!-- Videos Gallery -->
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark-gray);">Videos</h3>
+                <div id="video-gallery-loading" class="loading">Loading videos...</div>
+                <div id="video-gallery" style="display: none;">
+                    <div id="video-grid" class="gallery-grid"></div>
+                </div>
             </div>
 
             <!-- Lightbox -->
@@ -1273,7 +1288,9 @@
         // Photo Gallery Functions
         const DRIVE_FOLDER_ID = '1LNmEZZpxauSEbPF1OnpxneGGU47yYqUS';
         let allPhotos = [];
+        let allVideos = [];
         let currentPhotoIndex = 0;
+        let currentGalleryType = 'photo'; // 'photo' or 'video'
 
         async function loadPhotoGallery() {
             try {
@@ -1294,31 +1311,35 @@
                 const imageData = await imageResponse.json();
                 const videoData = await videoResponse.json();
                 
-                // Combine and sort by creation time
-                const images = (imageData.files || []).map(f => ({ ...f, type: 'image' }));
-                const videos = (videoData.files || []).map(f => ({ ...f, type: 'video' }));
+                allPhotos = imageData.files || [];
+                allVideos = videoData.files || [];
                 
-                allPhotos = [...images, ...videos].sort((a, b) => 
-                    new Date(b.createdTime) - new Date(a.createdTime)
-                );
-                
+                // Render photos
                 if (allPhotos.length === 0) {
                     document.getElementById('photo-gallery-loading').textContent = 'No photos yet. Check back soon!';
-                    return;
+                } else {
+                    renderPhotoGallery(allPhotos);
+                    document.getElementById('photo-gallery-loading').style.display = 'none';
+                    document.getElementById('photo-gallery').style.display = 'block';
                 }
                 
-                renderGallery(allPhotos);
-                
-                document.getElementById('photo-gallery-loading').style.display = 'none';
-                document.getElementById('photo-gallery').style.display = 'block';
+                // Render videos
+                if (allVideos.length === 0) {
+                    document.getElementById('video-gallery-loading').textContent = 'No videos yet. Check back soon!';
+                } else {
+                    renderVideoGallery(allVideos);
+                    document.getElementById('video-gallery-loading').style.display = 'none';
+                    document.getElementById('video-gallery').style.display = 'block';
+                }
                 
             } catch (error) {
-                console.error('Error loading photos:', error);
+                console.error('Error loading gallery:', error);
                 document.getElementById('photo-gallery-loading').textContent = 'Error loading photos. Please refresh the page.';
+                document.getElementById('video-gallery-loading').textContent = 'Error loading videos. Please refresh the page.';
             }
         }
 
-        function renderGallery(photos) {
+        function renderPhotoGallery(photos) {
             const container = document.getElementById('gallery-grid');
             container.innerHTML = '';
             
@@ -1326,38 +1347,54 @@
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 
-                if (photo.type === 'video') {
-                    // For videos, show thumbnail with play icon
-                    const img = document.createElement('img');
-                    img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
-                    img.alt = photo.name;
-                    img.loading = 'lazy';
-                    
-                    const playIcon = document.createElement('div');
-                    playIcon.className = 'video-play-icon';
-                    playIcon.innerHTML = '▶';
-                    
-                    item.appendChild(img);
-                    item.appendChild(playIcon);
-                } else {
-                    // For images
-                    const img = document.createElement('img');
-                    img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
-                    img.alt = photo.name;
-                    img.loading = 'lazy';
-                    
-                    item.appendChild(img);
-                }
+                const img = document.createElement('img');
+                img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
+                img.alt = photo.name;
+                img.loading = 'lazy';
                 
-                item.onclick = () => openLightbox(index);
+                item.appendChild(img);
+                item.onclick = () => openPhotoLightbox(index);
+                container.appendChild(item);
+            });
+        }
+
+        function renderVideoGallery(videos) {
+            const container = document.getElementById('video-grid');
+            container.innerHTML = '';
+            
+            videos.forEach((video, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = video.thumbnailLink || `https://drive.google.com/thumbnail?id=${video.id}&sz=w400`;
+                img.alt = video.name;
+                img.loading = 'lazy';
+                
+                const playIcon = document.createElement('div');
+                playIcon.className = 'video-play-icon';
+                playIcon.innerHTML = '▶';
+                
+                item.appendChild(img);
+                item.appendChild(playIcon);
+                item.onclick = () => openVideoLightbox(index);
                 container.appendChild(item);
             });
         }
 
         // Lightbox Functions
-        function openLightbox(index) {
+        function openPhotoLightbox(index) {
             currentPhotoIndex = index;
-            showPhoto(index);
+            currentGalleryType = 'photo';
+            showCurrentMedia();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVideoLightbox(index) {
+            currentPhotoIndex = index;
+            currentGalleryType = 'video';
+            showCurrentMedia();
             document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1369,47 +1406,48 @@
             document.body.style.overflow = 'auto';
         }
 
-        function showPhoto(index) {
-            if (index < 0) index = allPhotos.length - 1;
-            if (index >= allPhotos.length) index = 0;
+        function showCurrentMedia() {
+            const currentArray = currentGalleryType === 'photo' ? allPhotos : allVideos;
+            if (currentPhotoIndex < 0) currentPhotoIndex = currentArray.length - 1;
+            if (currentPhotoIndex >= currentArray.length) currentPhotoIndex = 0;
             
-            currentPhotoIndex = index;
-            const photo = allPhotos[index];
+            const media = currentArray[currentPhotoIndex];
             
             const img = document.getElementById('lightbox-img');
             const video = document.getElementById('lightbox-video');
             const videoSource = document.getElementById('lightbox-video-source');
             const caption = document.getElementById('lightbox-caption');
             
-            if (photo.type === 'video') {
+            if (currentGalleryType === 'video') {
                 // Show video, hide image
                 img.style.display = 'none';
                 video.style.display = 'block';
                 
-                // Set video source - use webContentLink for downloadable link
-                videoSource.src = `https://drive.google.com/uc?export=download&id=${photo.id}`;
+                // Use webContentLink for streaming - this is the key fix!
+                videoSource.src = media.webContentLink || `https://drive.google.com/uc?export=download&id=${media.id}`;
                 video.load();
                 
-                caption.textContent = photo.name;
+                caption.textContent = media.name;
             } else {
                 // Show image, hide video
                 video.style.display = 'none';
-                video.pause(); // Stop any playing video
+                video.pause();
                 img.style.display = 'block';
                 
-                // Use the proper Google Drive image URL
-                img.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1920`;
-                img.alt = photo.name;
-                caption.textContent = photo.name;
+                img.src = `https://drive.google.com/thumbnail?id=${media.id}&sz=w1920`;
+                img.alt = media.name;
+                caption.textContent = media.name;
             }
         }
 
         function nextPhoto() {
-            showPhoto(currentPhotoIndex + 1);
+            currentPhotoIndex++;
+            showCurrentMedia();
         }
 
         function prevPhoto() {
-            showPhoto(currentPhotoIndex - 1);
+            currentPhotoIndex--;
+            showCurrentMedia();
         }
 
         // Lightbox event listeners

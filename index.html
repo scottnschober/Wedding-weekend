@@ -1252,7 +1252,7 @@
         async function loadPhotoGallery() {
             try {
                 // Fetch photos from Google Drive folder
-                const apiKey = 'AIzaSyAYrXPbdenTOfuVDhcaY1oDBGit1pb2mfg'; // Will be added during setup
+                const apiKey = 'AIzaSyAYrXPbdenTOfuVDhcaY1oDBGit1pb2mfg';
                 const url = `https://www.googleapis.com/drive/v3/files?q='${DRIVE_FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink,createdTime)&orderBy=createdTime+desc&key=${apiKey}`;
                 
                 const response = await fetch(url);

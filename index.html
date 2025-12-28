@@ -531,7 +531,7 @@
     <div class="header">
         <div class="header-content">
             <h1 class="header-title">Scott & Melinda</h1>
-            <p class="header-subtitle">January 29th to February 1st 2026 · Conrad Punta de Mita</p>
+            <p class="header-subtitle">January 31, 2026 · Conrad Punta de Mita</p>
         </div>
     </div>
 
@@ -542,6 +542,7 @@
             <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
             <button class="nav-tab" onclick="showSection('map')">Map</button>
             <button class="nav-tab" onclick="showSection('seating')">Seating</button>
+            <button class="nav-tab" onclick="showSection('photos')">Photos</button>
             <button class="nav-tab" onclick="showSection('travel')">Travel</button>
             <button class="nav-tab" onclick="showSection('faq')">FAQ</button>
         </div>
@@ -769,6 +770,43 @@
                         </g>
                     </svg>
                 </div>
+            </div>
+        </section>
+
+        <!-- PHOTOS SECTION -->
+        <section id="photos" class="section">
+            <h2 class="section-title">Wedding Weekend Photos</h2>
+            
+            <div class="welcome-box" style="margin-bottom: 2rem;">
+                <p class="welcome-text" style="font-size: 1rem; margin-bottom: 1rem;">
+                    We'd love to see your photos from the entire weekend - not just the wedding ceremony! Pool days, dinners, candid moments, and everything in between.
+                </p>
+                <p class="welcome-text" style="font-size: 0.9rem; color: var(--warm-gray); margin-bottom: 1.5rem;">
+                    Please keep all photos tasteful.
+                </p>
+                <a href="https://photos.app.goo.gl/FyPWKYE3ccSoJQ1h6" target="_blank" style="
+                    display: inline-block;
+                    padding: 1rem 2rem;
+                    background: var(--accent);
+                    color: var(--white);
+                    text-decoration: none;
+                    border-radius: 2px;
+                    font-weight: 400;
+                    transition: all 0.3s ease;
+                    letter-spacing: 0.05em;
+                " onmouseover="this.style.background='var(--dark-gray)'" onmouseout="this.style.background='var(--accent)'">
+                    📸 Upload Your Photos
+                </a>
+            </div>
+
+            <!-- Embedded Photo Gallery -->
+            <div class="info-box" style="padding: 0; overflow: hidden;">
+                <iframe 
+                    src="https://photos.app.goo.gl/FyPWKYE3ccSoJQ1h6" 
+                    style="width: 100%; height: 600px; border: none;"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
             </div>
         </section>
 

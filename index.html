@@ -523,6 +523,29 @@
             .info-box {
                 padding: 1.5rem;
             }
+            
+            .hero-banner {
+                height: 250px !important;
+            }
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+        }
+
+        .section-header-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
 
         /* Photo Gallery Styles */
@@ -728,6 +751,26 @@
         <!-- MAP SECTION -->
         <section id="map" class="section">
             <h2 class="section-title">Resort Map</h2>
+            
+            <!-- Conrad Resort Map PDF -->
+            <div style="margin-bottom: 3rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
+                    <iframe 
+                        src="https://drive.google.com/file/d/16lo6bUuAnJN6sdjhmYgFFmkQk84Vcqhc/preview" 
+                        style="width: 100%; height: 600px; border: none; border-radius: 4px;"
+                        allow="autoplay">
+                    </iframe>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--warm-gray);">
+                        <a href="https://drive.google.com/file/d/16lo6bUuAnJN6sdjhmYgFFmkQk84Vcqhc/view" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">
+                            📄 Open full map in new window
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactive Event Locations -->
+            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--dark-gray); text-align: center;">Event Locations</h3>
+            
             <div class="map-container">
                 <p style="text-align: center; color: var(--warm-gray); margin-bottom: 1.5rem;">Click on a location to see event details</p>
                 
@@ -1115,6 +1158,9 @@
                 });
                 
                 homeContent.innerHTML = `
+                    <img src="https://drive.google.com/thumbnail?id=1-MWf_bMlhrNubhS4bTRzJaAxVnvHOycq&sz=w1920" 
+                         alt="Scott & Melinda" 
+                         class="hero-banner">
                     <h2 class="section-title">${content['Title'] || 'Welcome to Our Wedding Weekend'}</h2>
                     <div class="welcome-box">
                         <p class="welcome-text">${content['Paragraph 1'] || ''}</p>
@@ -1151,21 +1197,26 @@
                     groupedByDay[event.Day].events.push(event);
                 });
                 
-                scheduleContent.innerHTML = Object.entries(groupedByDay).map(([day, data]) => `
-                    <div class="schedule-day">
-                        <h3 class="day-title">${day}</h3>
-                        <p class="day-date">${data.date}</p>
-                        ${data.events.map(event => `
-                            <div class="event">
-                                <div class="event-name">${event['Event Name']}</div>
-                                <div class="event-time">${event.Time}</div>
-                                ${event.Location ? `<div class="event-location">${event.Location}</div>` : ''}
-                                ${event.Description ? `<div class="event-description">${event.Description}</div>` : ''}
-                                ${event.Attire ? `<div class="event-attire">Attire: ${event.Attire}</div>` : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                `).join('');
+                scheduleContent.innerHTML = `
+                    <img src="https://drive.google.com/thumbnail?id=1KpEtHK9cgF95X4ul5IAiymqjmxeZZasl&sz=w1920" 
+                         alt="Wedding Weekend" 
+                         class="section-header-image">
+                    ${Object.entries(groupedByDay).map(([day, data]) => `
+                        <div class="schedule-day">
+                            <h3 class="day-title">${day}</h3>
+                            <p class="day-date">${data.date}</p>
+                            ${data.events.map(event => `
+                                <div class="event">
+                                    <div class="event-name">${event['Event Name']}</div>
+                                    <div class="event-time">${event.Time}</div>
+                                    ${event.Location ? `<div class="event-location">${event.Location}</div>` : ''}
+                                    ${event.Description ? `<div class="event-description">${event.Description}</div>` : ''}
+                                    ${event.Attire ? `<div class="event-attire">Attire: ${event.Attire}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `).join('')}
+                `;
                 
                 document.getElementById('schedule-loading').style.display = 'none';
             } catch (error) {

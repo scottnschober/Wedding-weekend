@@ -799,35 +799,80 @@
             home: `${SHEET_BASE_URL}?gid=895216545&single=true&output=csv`
         };
 
-        // CSV Parser
+        // CSV Parser - Enhanced to handle multi-line cells with quotes
         function parseCSV(csvText) {
-            const lines = csvText.trim().split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
+            const lines = [];
+            let currentLine = '';
+            let inQuotes = false;
             
-            return lines.slice(1).filter(line => line.trim()).map(line => {
-                const values = [];
-                let current = '';
-                let inQuotes = false;
+            // First, split into lines while respecting quotes
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                const nextChar = csvText[i + 1];
                 
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        values.push(current.trim());
-                        current = '';
-                    } else {
-                        current += char;
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                    currentLine += char;
+                } else if (char === '\n' && !inQuotes) {
+                    if (currentLine.trim()) {
+                        lines.push(currentLine);
                     }
+                    currentLine = '';
+                } else {
+                    currentLine += char;
                 }
-                values.push(current.trim());
-                
+            }
+            
+            // Don't forget the last line
+            if (currentLine.trim()) {
+                lines.push(currentLine);
+            }
+            
+            if (lines.length === 0) return [];
+            
+            // Parse header
+            const headers = parseCSVLine(lines[0]);
+            
+            // Parse data rows
+            return lines.slice(1).map(line => {
+                const values = parseCSVLine(line);
                 const obj = {};
                 headers.forEach((header, i) => {
                     obj[header] = values[i] || '';
                 });
                 return obj;
             });
+        }
+        
+        // Helper function to parse a single CSV line
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+                
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        // Escaped quote
+                        current += '"';
+                        i++; // Skip next quote
+                    } else {
+                        // Toggle quote state
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            values.push(current.trim());
+            return values;
         }
 
         // Load Home Page

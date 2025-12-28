@@ -972,7 +972,9 @@
             try {
                 const response = await fetch(SHEETS.faq);
                 const csvText = await response.text();
-                const faqs = parseCSV(csvText).sort((a, b) => parseInt(a.Order) - parseInt(b.Order));
+                const faqs = parseCSV(csvText)
+                    .filter(faq => faq.Question && faq.Question.trim()) // Only include rows with questions
+                    .sort((a, b) => parseInt(a.Order) - parseInt(b.Order));
                 
                 const faqContent = document.getElementById('faq-content');
                 const groupedBySection = {};
@@ -987,8 +989,8 @@
                 faqContent.innerHTML = Object.entries(groupedBySection).map(([section, items]) => `
                     <div class="faq-section-header">${section}</div>
                     ${items.map((faq, index) => `
-                        <div class="faq-item" id="faq-${section}-${index}">
-                            <div class="faq-question" onclick="toggleFAQ('${section}-${index}')">
+                        <div class="faq-item" id="faq-${section.replace(/\s+/g, '-')}-${index}">
+                            <div class="faq-question" onclick="toggleFAQ('${section.replace(/\s+/g, '-')}-${index}')">
                                 <span class="faq-question-text">${faq.Question}</span>
                                 <span class="faq-icon">▶</span>
                             </div>

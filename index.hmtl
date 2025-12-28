@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scott & Melinda - Wedding Weekend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #F5F1E8;
+            --warm-gray: #9B8E7E;
+            --dark-gray: #4A4238;
+            --accent: #C9A882;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--sand);
+            color: var(--dark-gray);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(74, 66, 56, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .header-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            border-top: 1px solid rgba(155, 142, 126, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-tab:hover {
+            color: var(--accent);
+        }
+
+        .nav-tab.active {
+            color: var(--dark-gray);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark-gray);
+        }
+
+        /* Home Section */
+        .welcome-box {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin: 1.5rem 0;
+        }
+
+        /* Schedule Section */
+        .schedule-day {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+        }
+
+        .day-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .day-date {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .event {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(155, 142, 126, 0.2);
+        }
+
+        .event:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .event-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-time {
+            color: var(--accent);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location {
+            color: var(--warm-gray);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .event-description {
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-attire {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Map Section */
+        .map-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .map-svg {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .map-location {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-location:hover .location-shape {
+            fill: var(--accent);
+            opacity: 0.3;
+        }
+
+        .map-location.active .location-shape {
+            fill: var(--accent);
+            opacity: 0.4;
+        }
+
+        .location-shape {
+            fill: var(--sand);
+            stroke: var(--warm-gray);
+            stroke-width: 2;
+            opacity: 0.2;
+        }
+
+        .location-label {
+            font-size: 12px;
+            fill: var(--dark-gray);
+            pointer-events: none;
+        }
+
+        .event-details-box {
+            background: var(--sand);
+            padding: 1.5rem;
+            border-radius: 2px;
+            margin-top: 2rem;
+            min-height: 100px;
+            text-align: center;
+        }
+
+        .event-details-box.empty {
+            color: var(--warm-gray);
+            font-style: italic;
+        }
+
+        /* Travel Section */
+        .info-box {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+        }
+
+        .info-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .info-text {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .info-text strong {
+            color: var(--accent);
+        }
+
+        /* Seating Chart Styles */
+        .search-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            border: 1px solid var(--warm-gray);
+            background: var(--white);
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 168, 130, 0.1);
+        }
+
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 1px solid var(--warm-gray);
+            border-top: none;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(74, 66, 56, 0.15);
+            display: none;
+        }
+
+        .autocomplete-dropdown.show {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 0.875rem 1.25rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid rgba(155, 142, 126, 0.1);
+        }
+
+        .autocomplete-item:hover,
+        .autocomplete-item.selected {
+            background: var(--sand);
+        }
+
+        .result {
+            padding: 1.5rem;
+            background: var(--sand);
+            border-radius: 2px;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .result-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+            font-weight: 400;
+        }
+
+        .result-detail {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            margin-top: 0.5rem;
+        }
+
+        .diagram-section {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
+        }
+
+        .venue-layout {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-overlay {
+            fill: transparent;
+            stroke: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .section-overlay.highlight {
+            fill: var(--accent);
+            opacity: 0.4;
+            stroke: var(--accent);
+            stroke-width: 2;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-tab {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .welcome-box,
+            .schedule-day,
+            .map-container,
+            .info-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1 class="header-title">Scott & Melinda</h1>
+            <p class="header-subtitle">January 31, 2026 · Conrad Punta de Mita</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <button class="nav-tab active" onclick="showSection('home')">Home</button>
+            <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
+            <button class="nav-tab" onclick="showSection('map')">Map</button>
+            <button class="nav-tab" onclick="showSection('seating')">Seating</button>
+            <button class="nav-tab" onclick="showSection('travel')">Travel</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <h2 class="section-title">Welcome to Our Wedding Weekend</h2>
+            <div class="welcome-box">
+                <p class="welcome-text">
+                    We're so excited to celebrate with you in paradise! This site has everything you need for our wedding weekend at the beautiful Conrad Punta de Mita.
+                </p>
+                <div class="event-date">January 29 - February 1, 2026</div>
+                <p class="welcome-text">
+                    From pool days to our ceremony on the beach, we can't wait to share these special moments with you. Use the tabs above to find the schedule, map, seating chart, and travel information.
+                </p>
+            </div>
+        </section>
+
+        <!-- SCHEDULE SECTION -->
+        <section id="schedule" class="section">
+            <h2 class="section-title">Weekend Schedule</h2>
+            
+            <!-- Thursday -->
+            <div class="schedule-day">
+                <h3 class="day-title">Thursday</h3>
+                <p class="day-date">January 29, 2026</p>
+                <div class="event">
+                    <div class="event-name">Arrivals & Check In</div>
+                    <div class="event-time">All Day</div>
+                    <div class="event-description">We can't wait to see you on Friday at the pool!</div>
+                </div>
+            </div>
+
+            <!-- Friday -->
+            <div class="schedule-day">
+                <h3 class="day-title">Friday</h3>
+                <p class="day-date">January 30, 2026</p>
+                
+                <div class="event">
+                    <div class="event-name">Pool Day</div>
+                    <div class="event-time">10:00 AM - 3:00 PM</div>
+                    <div class="event-location">Activity Pool (by Mezquite)</div>
+                    <div class="event-description">
+                        Join us for a relaxing day poolside at the Activity Pool with cabanas, loungers, and plenty of shade (and sun!) to go around. We'll have lunch and drinks by the pool—just bring your suit, your SPF, and good vibes!
+                    </div>
+                    <div class="event-attire">Attire: Swimsuits and sunscreen!</div>
+                </div>
+
+                <div class="event">
+                    <div class="event-name">Welcome Dinner</div>
+                    <div class="event-time">7:30 PM - 9:30 PM</div>
+                    <div class="event-location">Aura</div>
+                    <div class="event-description">
+                        Kick off our weekend with a cocktail-style reception featuring dinner, drinks, and a warm welcome. Join us for an evening of mingling, music, and celebration. The party is on a paved terrace—no sand or grass—so dress to celebrate in style!
+                    </div>
+                    <div class="event-attire">Attire: Cocktail - Cocktail dresses, rompers, jumpsuits, collared shirts and pants (no jacket required)</div>
+                </div>
+            </div>
+
+            <!-- Saturday -->
+            <div class="schedule-day">
+                <h3 class="day-title">Saturday</h3>
+                <p class="day-date">January 31, 2026</p>
+                
+                <div class="event">
+                    <div class="event-name">Wedding Ceremony & Reception</div>
+                    <div class="event-time">4:30 PM - 11:00 PM</div>
+                    <div class="event-location">Codex Restaurant</div>
+                    <div class="event-description">
+                        It's the Big Day! Please make your way to Codex to be seated by 4:45 PM sharp—the ceremony will begin promptly. We'll exchange vows with our toes in the sand, enjoy cocktail hour on the grass under the Punta Mita sky, and then enjoy the restaurant for dinner and dancing.
+                    </div>
+                    <div class="event-attire">Attire: Beach Chic - Dresses that fall past the knee (flowy, elegant, comfortable), suits or dress pants with button-up (ties optional)</div>
+                </div>
+            </div>
+
+            <!-- Sunday -->
+            <div class="schedule-day">
+                <h3 class="day-title">Sunday</h3>
+                <p class="day-date">February 1, 2026</p>
+                
+                <div class="event">
+                    <div class="event-name">Farewell Brunch</div>
+                    <div class="event-time">9:00 AM - 11:00 AM</div>
+                    <div class="event-location">Tuki Patio</div>
+                    <div class="event-description">
+                        We'll be gathering for one last bite together before takeoff—join us to enjoy the breakfast buffet and soak in the final moments of paradise.
+                    </div>
+                    <div class="event-attire">Attire: Cute & Comfy - Sundresses, flowy sets, linen pants</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP SECTION -->
+        <section id="map" class="section">
+            <h2 class="section-title">Resort Map</h2>
+            <div class="map-container">
+                <p style="text-align: center; color: var(--warm-gray); margin-bottom: 1.5rem;">Click on a location to see event details</p>
+                
+                <svg class="map-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Beach at bottom -->
+                    <rect x="0" y="500" width="800" height="100" fill="#E8DCC8" opacity="0.3"/>
+                    <text x="400" y="560" text-anchor="middle" font-size="14" fill="var(--warm-gray)" opacity="0.6">Beach</text>
+                    
+                    <!-- Main hotel building -->
+                    <rect x="150" y="50" width="500" height="200" fill="var(--white)" stroke="var(--warm-gray)" stroke-width="2"/>
+                    <text x="400" y="145" text-anchor="middle" font-size="16" fill="var(--dark-gray)">Conrad Punta de Mita</text>
+                    <text x="400" y="165" text-anchor="middle" font-size="12" fill="var(--warm-gray)">Main Hotel</text>
+                    
+                    <!-- Activity Pool (by Mezquite) - Left side -->
+                    <g class="map-location" data-location="activity-pool">
+                        <ellipse class="location-shape" cx="200" cy="350" rx="70" ry="50"/>
+                        <text class="location-label" x="200" y="340" text-anchor="middle" font-weight="600">Activity Pool</text>
+                        <text class="location-label" x="200" y="355" text-anchor="middle" font-size="10">(by Mezquite)</text>
+                        <text class="location-label" x="200" y="368" text-anchor="middle" font-size="10" fill="var(--accent)">Pool Day</text>
+                    </g>
+                    
+                    <!-- Aura - Center -->
+                    <g class="map-location" data-location="aura">
+                        <rect class="location-shape" x="340" y="280" width="120" height="80" rx="3"/>
+                        <text class="location-label" x="400" y="315" text-anchor="middle" font-weight="600">Aura</text>
+                        <text class="location-label" x="400" y="332" text-anchor="middle" font-size="10" fill="var(--accent)">Welcome Dinner</text>
+                    </g>
+                    
+                    <!-- Codex - Right side by beach -->
+                    <g class="map-location" data-location="codex">
+                        <rect class="location-shape" x="520" y="320" width="140" height="120" rx="3"/>
+                        <text class="location-label" x="590" y="370" text-anchor="middle" font-weight="600">Codex</text>
+                        <text class="location-label" x="590" y="387" text-anchor="middle" font-size="10" fill="var(--accent)">Wedding</text>
+                        <text class="location-label" x="590" y="401" text-anchor="middle" font-size="10" fill="var(--accent)">Ceremony & Reception</text>
+                    </g>
+                    
+                    <!-- Tuki Patio - Left side, upper -->
+                    <g class="map-location" data-location="tuki">
+                        <rect class="location-shape" x="70" y="120" width="100" height="70" rx="3"/>
+                        <text class="location-label" x="120" y="150" text-anchor="middle" font-weight="600">Tuki Patio</text>
+                        <text class="location-label" x="120" y="167" text-anchor="middle" font-size="10" fill="var(--accent)">Farewell Brunch</text>
+                    </g>
+                </svg>
+
+                <div id="event-details" class="event-details-box empty">
+                    Click a location above to see event details
+                </div>
+            </div>
+        </section>
+
+        <!-- SEATING SECTION -->
+        <section id="seating" class="section">
+            <h2 class="section-title">Find Your Seat</h2>
+            
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Enter your name..."
+                        autocomplete="off"
+                    >
+                    <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+                </div>
+                <div class="result" id="result">
+                    <div class="result-detail">Search for your name to find your seat</div>
+                </div>
+            </div>
+
+            <div class="diagram-section">
+                <div class="venue-layout" id="venueDiagram">
+                    <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sweetheart Table -->
+                        <g id="sweetheart-group">
+                            <text x="55" y="140" class="location-label" style="font-size: 10px; opacity: 0.6;">Sweetheart</text>
+                            <rect class="section-overlay" id="sweetheart" x="30" y="150" width="50" height="80" rx="3"/>
+                            <rect x="30" y="150" width="50" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Table 1 -->
+                        <g id="table1-group">
+                            <text x="450" y="15" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 1</text>
+                            
+                            <!-- Invisible overlays -->
+                            <rect class="section-overlay" id="section-1-A" x="120" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-B" x="200" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-C" x="280" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-D" x="360" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-E" x="440" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-F" x="520" y="50" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-1-G" x="600" y="50" width="80" height="80" rx="3"/>
+                            
+                            <!-- Table outline -->
+                            <rect x="120" y="50" width="560" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Dividers -->
+                            <line x1="200" y1="50" x2="200" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="280" y1="50" x2="280" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="360" y1="50" x2="360" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="440" y1="50" x2="440" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="520" y1="50" x2="520" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="600" y1="50" x2="600" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Labels -->
+                            <text x="160" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">A</text>
+                            <text x="240" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">B</text>
+                            <text x="320" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">C</text>
+                            <text x="400" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">D</text>
+                            <text x="480" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">E</text>
+                            <text x="560" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
+                            <text x="640" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
+                            
+                            <!-- Chairs (top) -->
+                            <rect x="130" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="172" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="210" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="252" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="290" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="332" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="370" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="412" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="450" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="492" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="530" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="572" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="610" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="652" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Chairs (bottom) -->
+                            <rect x="130" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="172" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="210" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="252" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="290" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="332" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="370" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="412" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="450" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="492" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="530" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="572" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="610" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="652" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Table 2 (same structure) -->
+                        <g id="table2-group">
+                            <text x="450" y="175" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 2</text>
+                            
+                            <rect class="section-overlay" id="section-2-A" x="120" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-B" x="200" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-C" x="280" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-D" x="360" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-E" x="440" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-F" x="520" y="210" width="80" height="80" rx="3"/>
+                            <rect class="section-overlay" id="section-2-G" x="600" y="210" width="80" height="80" rx="3"/>
+                            
+                            <rect x="120" y="210" width="560" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <line x1="200" y1="210" x2="200" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="280" y1="210" x2="280" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="360" y1="210" x2="360" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="440" y1="210" x2="440" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="520" y1="210" x2="520" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <line x1="600" y1="210" x2="600" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <text x="160" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">A</text>
+                            <text x="240" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">B</text>
+                            <text x="320" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">C</text>
+                            <text x="400" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">D</text>
+                            <text x="480" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">E</text>
+                            <text x="560" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
+                            <text x="640" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
+                            
+                            <!-- Chairs (top) -->
+                            <rect x="130" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="172" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="210" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="252" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="290" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="332" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="370" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="412" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="450" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="492" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="530" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="572" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="610" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="652" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Chairs (bottom) -->
+                            <rect x="130" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="172" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="210" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="252" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="290" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="332" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="370" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="412" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="450" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="492" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="530" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="572" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="610" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="652" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAVEL SECTION -->
+        <section id="travel" class="section">
+            <h2 class="section-title">Travel & FAQ</h2>
+            
+            <div class="info-box">
+                <h3 class="info-title">Getting There</h3>
+                <p class="info-text">
+                    <strong>Airport:</strong> Puerto Vallarta International Airport (PVR)
+                </p>
+                <p class="info-text">
+                    The nearest airport is about 30 minutes from the hotel. The Conrad offers airport transfer services—please contact the hotel to arrange.
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3 class="info-title">Hotel Information</h3>
+                <p class="info-text">
+                    <strong>Conrad Punta de Mita</strong><br>
+                    Carr. Punta de Mita - Sayulita Km 2<br>
+                    Punta Mita, Nayarit 63734, Mexico
+                </p>
+                <p class="info-text">
+                    We've arranged a special group rate. To book your room with the group rate, please email or call:<br>
+                    <strong>Email:</strong> PVRPM.RES@ConradHotels.com<br>
+                    <strong>Phone:</strong> 1-844-298-4300 (USA) or 800-288-9985 (MX & Int'l)
+                </p>
+                <p class="info-text">
+                    <strong>Recommended Dates:</strong> January 29 - February 1, 2026
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3 class="info-title">What to Pack</h3>
+                <p class="info-text">
+                    • Swimsuits and cover-ups<br>
+                    • Sunscreen and sunglasses<br>
+                    • Cocktail attire for Friday night<br>
+                    • Beach chic outfit for the wedding<br>
+                    • Comfortable shoes for dancing<br>
+                    • Light layers for evening breeze
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3 class="info-title">Questions?</h3>
+                <p class="info-text">
+                    If you have any questions about the weekend, please don't hesitate to reach out to us. We can't wait to celebrate with you!
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activate clicked tab
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Map Interaction
+        const eventData = {
+            'activity-pool': {
+                name: 'Pool Day',
+                time: 'Friday, 10:00 AM - 3:00 PM',
+                location: 'Activity Pool (by Mezquite)',
+                description: 'Join us poolside for lunch, drinks, and good vibes. Bring your swimsuit and sunscreen!',
+                attire: 'Swimsuits and sunscreen'
+            },
+            'aura': {
+                name: 'Welcome Dinner',
+                time: 'Friday, 7:30 PM - 9:30 PM',
+                location: 'Aura',
+                description: 'Cocktail-style reception with dinner, drinks, and a warm welcome.',
+                attire: 'Cocktail attire'
+            },
+            'codex': {
+                name: 'Wedding Ceremony & Reception',
+                time: 'Saturday, 4:30 PM - 11:00 PM',
+                location: 'Codex Restaurant',
+                description: 'Ceremony begins at 5:00 PM. We\'ll exchange vows on the beach, cocktail hour on the grass, then dinner and dancing.',
+                attire: 'Beach Chic'
+            },
+            'tuki': {
+                name: 'Farewell Brunch',
+                time: 'Sunday, 9:00 AM - 11:00 AM',
+                location: 'Tuki Patio',
+                description: 'One last bite together before takeoff. Enjoy the breakfast buffet!',
+                attire: 'Cute & Comfy'
+            }
+        };
+
+        document.querySelectorAll('.map-location').forEach(location => {
+            location.addEventListener('click', function() {
+                const locationKey = this.dataset.location;
+                const event = eventData[locationKey];
+                
+                // Remove active from all locations
+                document.querySelectorAll('.map-location').forEach(loc => {
+                    loc.classList.remove('active');
+                });
+                
+                // Add active to clicked location
+                this.classList.add('active');
+                
+                // Update event details
+                const detailsBox = document.getElementById('event-details');
+                detailsBox.classList.remove('empty');
+                detailsBox.innerHTML = `
+                    <div class="event-name" style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem;">${event.name}</div>
+                    <div class="event-time" style="color: var(--accent); margin-bottom: 0.5rem;">${event.time}</div>
+                    <div class="event-location" style="color: var(--warm-gray); font-style: italic; margin-bottom: 0.75rem;">${event.location}</div>
+                    <div class="event-description" style="margin-bottom: 0.5rem;">${event.description}</div>
+                    <div class="event-attire" style="color: var(--warm-gray); font-size: 0.9rem; font-style: italic;">Attire: ${event.attire}</div>
+                `;
+            });
+        });
+
+        // Seating Chart Functionality
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTnii7jdJ1CNlEotrqzCs1nQRv7OR2iT7nqeyCYem0wRXGCL4RRKC8Awr-M963Nr18Xr4j2J71WV5vd/pub?gid=0&single=true&output=csv';
+        let guestData = [];
+
+        async function loadGuestData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                if (!response.ok) throw new Error('Failed to load');
+                
+                const csvText = await response.text();
+                const rows = csvText.split('\n').slice(1);
+                
+                guestData = rows
+                    .filter(row => row.trim())
+                    .map(row => {
+                        const values = [];
+                        let current = '';
+                        let inQuotes = false;
+                        
+                        for (let i = 0; i < row.length; i++) {
+                            const char = row[i];
+                            if (char === '"') {
+                                inQuotes = !inQuotes;
+                            } else if (char === ',' && !inQuotes) {
+                                values.push(current.trim());
+                                current = '';
+                            } else {
+                                current += char;
+                            }
+                        }
+                        values.push(current.trim());
+                        
+                        const [name, table, section, coupleId, notes] = values;
+                        return { name: name || '', table: table || '', section: section || '', coupleId: coupleId || '', notes: notes || '' };
+                    })
+                    .filter(guest => guest.name);
+                    
+            } catch (error) {
+                console.error('Error loading guest data:', error);
+            }
+        }
+
+        const searchInput = document.getElementById('searchInput');
+        const resultDiv = document.getElementById('result');
+        const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+        let selectedIndex = -1;
+        let matchingGuests = [];
+
+        function showGuestSeating(guest) {
+            document.querySelectorAll('.section-overlay').forEach(el => {
+                el.classList.remove('highlight');
+            });
+
+            const tableText = guest.table === 'Sweetheart' 
+                ? 'Sweetheart Table'
+                : `Table ${guest.table}-${guest.section}`;
+            
+            let seatedWith = '';
+            if (guest.coupleId && guest.coupleId !== '') {
+                const companions = guestData.filter(g => 
+                    g.coupleId === guest.coupleId && 
+                    g.name.toLowerCase() !== guest.name.toLowerCase()
+                );
+                
+                if (companions.length > 0) {
+                    seatedWith = `with ${companions.map(c => c.name).join(', ')}`;
+                }
+            }
+            
+            resultDiv.innerHTML = `
+                <div class="result-text">${tableText}</div>
+                <div class="result-detail">${seatedWith || guest.notes || 'See you there!'}</div>
+            `;
+
+            if (guest.table === 'Sweetheart') {
+                document.getElementById('sweetheart')?.classList.add('highlight');
+            } else {
+                const sectionId = `section-${guest.table}-${guest.section}`;
+                document.getElementById(sectionId)?.classList.add('highlight');
+            }
+        }
+
+        function updateAutocomplete(searchTerm) {
+            if (searchTerm.length < 2) {
+                autocompleteDropdown.classList.remove('show');
+                matchingGuests = [];
+                return;
+            }
+
+            matchingGuests = guestData.filter(g => 
+                g.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            if (matchingGuests.length === 0) {
+                autocompleteDropdown.classList.remove('show');
+                return;
+            }
+
+            autocompleteDropdown.innerHTML = matchingGuests.map((guest, index) => `
+                <div class="autocomplete-item" data-index="${index}">
+                    ${guest.name}
+                </div>
+            `).join('');
+
+            autocompleteDropdown.classList.add('show');
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.trim();
+            
+            document.querySelectorAll('.section-overlay').forEach(el => {
+                el.classList.remove('highlight');
+            });
+
+            if (searchTerm.length < 2) {
+                resultDiv.innerHTML = '<div class="result-detail">Search for your name to find your seat</div>';
+                updateAutocomplete(searchTerm);
+                return;
+            }
+
+            updateAutocomplete(searchTerm);
+
+            if (matchingGuests.length === 1) {
+                showGuestSeating(matchingGuests[0]);
+            } else if (matchingGuests.length === 0) {
+                resultDiv.innerHTML = '<div class="result-detail">No match found. Try entering your full name.</div>';
+            } else {
+                resultDiv.innerHTML = '<div class="result-detail">Select your name from the list above</div>';
+            }
+        });
+
+        autocompleteDropdown.addEventListener('click', (e) => {
+            const item = e.target.closest('.autocomplete-item');
+            if (item) {
+                const index = parseInt(item.dataset.index);
+                searchInput.value = matchingGuests[index].name;
+                autocompleteDropdown.classList.remove('show');
+                showGuestSeating(matchingGuests[index]);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+                autocompleteDropdown.classList.remove('show');
+            }
+        });
+
+        loadGuestData();
+    </script>
+</body>
+</html>

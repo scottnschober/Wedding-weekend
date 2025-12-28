@@ -524,6 +524,146 @@
                 padding: 1.5rem;
             }
         }
+
+        /* Photo Gallery Styles */
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .gallery-row {
+            display: flex;
+            gap: 4px;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            opacity: 0.9;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-nav:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f1f1f1;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 10000;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 80%;
+            }
+
+            .lightbox-nav {
+                font-size: 24px;
+                padding: 15px 10px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -784,29 +924,36 @@
                 <p class="welcome-text" style="font-size: 0.9rem; color: var(--warm-gray); margin-bottom: 1.5rem;">
                     Please keep all photos tasteful.
                 </p>
-                <a href="https://photos.app.goo.gl/FyPWKYE3ccSoJQ1h6" target="_blank" style="
-                    display: inline-block;
-                    padding: 1rem 2rem;
-                    background: var(--accent);
-                    color: var(--white);
-                    text-decoration: none;
-                    border-radius: 2px;
-                    font-weight: 400;
-                    transition: all 0.3s ease;
-                    letter-spacing: 0.05em;
-                " onmouseover="this.style.background='var(--dark-gray)'" onmouseout="this.style.background='var(--accent)'">
-                    📸 Upload Your Photos
-                </a>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://drive.google.com/drive/folders/1abaI_-Rf1HMO6cnuo4bfjvbks72zaC4E" target="_blank" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--accent);
+                        color: var(--white);
+                        text-decoration: none;
+                        border-radius: 2px;
+                        font-weight: 400;
+                        transition: all 0.3s ease;
+                        letter-spacing: 0.05em;
+                    " onmouseover="this.style.background='var(--dark-gray)'" onmouseout="this.style.background='var(--accent)'">
+                        📸 Upload Your Photos
+                    </a>
+                </div>
             </div>
 
-            <!-- Embedded Photo Gallery -->
-            <div class="info-box" style="padding: 0; overflow: hidden;">
-                <iframe 
-                    src="https://photos.app.goo.gl/FyPWKYE3ccSoJQ1h6" 
-                    style="width: 100%; height: 600px; border: none;"
-                    frameborder="0"
-                    allowfullscreen
-                ></iframe>
+            <!-- Photo Gallery -->
+            <div id="photo-gallery-loading" class="loading">Loading photos...</div>
+            <div id="photo-gallery" style="display: none;">
+                <div id="gallery-grid" class="gallery-grid"></div>
+            </div>
+
+            <!-- Lightbox -->
+            <div id="lightbox" class="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-content" id="lightbox-img">
+                <div class="lightbox-caption" id="lightbox-caption"></div>
+                <button class="lightbox-nav lightbox-prev">&#10094;</button>
+                <button class="lightbox-nav lightbox-next">&#10095;</button>
             </div>
         </section>
 
@@ -1097,6 +1244,159 @@
             item.classList.toggle('open');
         }
 
+        // Photo Gallery Functions
+        const DRIVE_FOLDER_ID = '1abaI_-Rf1HMO6cnuo4bfjvbks72zaC4E';
+        let allPhotos = [];
+        let currentPhotoIndex = 0;
+
+        async function loadPhotoGallery() {
+            try {
+                // Fetch photos from Google Drive folder
+                const apiKey = 'YOUR_GOOGLE_API_KEY'; // Will be added during setup
+                const url = `https://www.googleapis.com/drive/v3/files?q='${DRIVE_FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink,createdTime)&orderBy=createdTime+desc&key=${apiKey}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (!data.files || data.files.length === 0) {
+                    document.getElementById('photo-gallery-loading').textContent = 'No photos yet. Check back soon!';
+                    return;
+                }
+                
+                allPhotos = data.files;
+                renderJustifiedGallery(allPhotos);
+                
+                document.getElementById('photo-gallery-loading').style.display = 'none';
+                document.getElementById('photo-gallery').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading photos:', error);
+                document.getElementById('photo-gallery-loading').textContent = 'Error loading photos. Please refresh the page.';
+            }
+        }
+
+        function renderJustifiedGallery(photos) {
+            const container = document.getElementById('gallery-grid');
+            container.innerHTML = '';
+            
+            // Justified layout settings
+            const targetRowHeight = 250;
+            const containerWidth = container.offsetWidth || 1000;
+            const spacing = 4;
+            
+            let currentRow = [];
+            let currentRowWidth = 0;
+            
+            photos.forEach((photo, index) => {
+                // Assume 16:9 ratio for photos (will be adjusted with actual dimensions)
+                const aspectRatio = 1.5;
+                const photoWidth = targetRowHeight * aspectRatio;
+                
+                currentRow.push({ photo, index, width: photoWidth });
+                currentRowWidth += photoWidth + spacing;
+                
+                // Check if row is full
+                if (currentRowWidth >= containerWidth || index === photos.length - 1) {
+                    renderRow(currentRow, containerWidth, targetRowHeight, container);
+                    currentRow = [];
+                    currentRowWidth = 0;
+                }
+            });
+        }
+
+        function renderRow(rowPhotos, containerWidth, targetHeight, container) {
+            if (rowPhotos.length === 0) return;
+            
+            const row = document.createElement('div');
+            row.className = 'gallery-row';
+            
+            // Calculate total width needed
+            const totalWidth = rowPhotos.reduce((sum, item) => sum + item.width, 0);
+            const spacing = 4 * (rowPhotos.length - 1);
+            const scale = (containerWidth - spacing) / totalWidth;
+            
+            rowPhotos.forEach(({ photo, index, width }) => {
+                const scaledWidth = width * scale;
+                const scaledHeight = targetHeight * scale;
+                
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.style.width = `${scaledWidth}px`;
+                item.style.height = `${scaledHeight}px`;
+                
+                const img = document.createElement('img');
+                // Use thumbnail for gallery, webContentLink for lightbox
+                img.src = photo.thumbnailLink || `https://drive.google.com/uc?export=view&id=${photo.id}`;
+                img.alt = photo.name;
+                img.loading = 'lazy';
+                
+                item.appendChild(img);
+                item.onclick = () => openLightbox(index);
+                
+                row.appendChild(item);
+            });
+            
+            container.appendChild(row);
+        }
+
+        // Lightbox Functions
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            showPhoto(index);
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPhoto(index) {
+            if (index < 0) index = allPhotos.length - 1;
+            if (index >= allPhotos.length) index = 0;
+            
+            currentPhotoIndex = index;
+            const photo = allPhotos[index];
+            
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            img.src = `https://drive.google.com/uc?export=view&id=${photo.id}`;
+            caption.textContent = photo.name;
+        }
+
+        function nextPhoto() {
+            showPhoto(currentPhotoIndex + 1);
+        }
+
+        function prevPhoto() {
+            showPhoto(currentPhotoIndex - 1);
+        }
+
+        // Lightbox event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.lightbox-close').onclick = closeLightbox;
+            document.querySelector('.lightbox-next').onclick = nextPhoto;
+            document.querySelector('.lightbox-prev').onclick = prevPhoto;
+            
+            // Close on background click
+            document.getElementById('lightbox').onclick = (e) => {
+                if (e.target.id === 'lightbox') {
+                    closeLightbox();
+                }
+            };
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!document.getElementById('lightbox').classList.contains('active')) return;
+                
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevPhoto();
+                if (e.key === 'ArrowRight') nextPhoto();
+            });
+        });
+
         // Navigation
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(section => {
@@ -1276,7 +1576,8 @@
                 loadMapEvents(),
                 loadTravel(),
                 loadFAQ(),
-                loadGuestData()
+                loadGuestData(),
+                loadPhotoGallery()
             ]);
         }
 

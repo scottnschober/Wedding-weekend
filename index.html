@@ -136,6 +136,13 @@
             color: var(--dark-gray);
         }
 
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--warm-gray);
+            font-style: italic;
+        }
+
         /* Home Section */
         .welcome-box {
             background: var(--white);
@@ -281,7 +288,7 @@
             font-style: italic;
         }
 
-        /* Travel Section */
+        /* Travel & FAQ */
         .info-box {
             background: var(--white);
             padding: 2rem;
@@ -300,10 +307,78 @@
         .info-text {
             line-height: 1.7;
             margin-bottom: 1rem;
+            white-space: pre-line;
         }
 
         .info-text strong {
             color: var(--accent);
+        }
+
+        /* FAQ Accordion */
+        .faq-section-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--dark-gray);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(155, 142, 126, 0.2);
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 0.75rem;
+            border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(74, 66, 56, 0.08);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--sand);
+        }
+
+        .faq-question-text {
+            font-weight: 400;
+            color: var(--dark-gray);
+            flex: 1;
+        }
+
+        .faq-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.25rem 1.5rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            white-space: pre-line;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 1000px;
         }
 
         /* Seating Chart Styles */
@@ -468,6 +543,7 @@
             <button class="nav-tab" onclick="showSection('map')">Map</button>
             <button class="nav-tab" onclick="showSection('seating')">Seating</button>
             <button class="nav-tab" onclick="showSection('travel')">Travel</button>
+            <button class="nav-tab" onclick="showSection('faq')">FAQ</button>
         </div>
     </nav>
 
@@ -475,90 +551,15 @@
     <div class="container">
         <!-- HOME SECTION -->
         <section id="home" class="section active">
-            <h2 class="section-title">Welcome to Our Wedding Weekend</h2>
-            <div class="welcome-box">
-                <p class="welcome-text">
-                    We're so excited to celebrate with you in paradise! This site has everything you need for our wedding weekend at the beautiful Conrad Punta de Mita.
-                </p>
-                <div class="event-date">January 29 - February 1, 2026</div>
-                <p class="welcome-text">
-                    From pool days to our ceremony on the beach, we can't wait to share these special moments with you. Use the tabs above to find the schedule, map, seating chart, and travel information.
-                </p>
-            </div>
+            <div id="home-loading" class="loading">Loading...</div>
+            <div id="home-content" style="display: none;"></div>
         </section>
 
         <!-- SCHEDULE SECTION -->
         <section id="schedule" class="section">
             <h2 class="section-title">Weekend Schedule</h2>
-            
-            <!-- Thursday -->
-            <div class="schedule-day">
-                <h3 class="day-title">Thursday</h3>
-                <p class="day-date">January 29, 2026</p>
-                <div class="event">
-                    <div class="event-name">Arrivals & Check In</div>
-                    <div class="event-time">All Day</div>
-                    <div class="event-description">We can't wait to see you on Friday at the pool!</div>
-                </div>
-            </div>
-
-            <!-- Friday -->
-            <div class="schedule-day">
-                <h3 class="day-title">Friday</h3>
-                <p class="day-date">January 30, 2026</p>
-                
-                <div class="event">
-                    <div class="event-name">Pool Day</div>
-                    <div class="event-time">10:00 AM - 3:00 PM</div>
-                    <div class="event-location">Activity Pool (by Mezquite)</div>
-                    <div class="event-description">
-                        Join us for a relaxing day poolside at the Activity Pool with cabanas, loungers, and plenty of shade (and sun!) to go around. We'll have lunch and drinks by the pool—just bring your suit, your SPF, and good vibes!
-                    </div>
-                    <div class="event-attire">Attire: Swimsuits and sunscreen!</div>
-                </div>
-
-                <div class="event">
-                    <div class="event-name">Welcome Dinner</div>
-                    <div class="event-time">7:30 PM - 9:30 PM</div>
-                    <div class="event-location">Aura</div>
-                    <div class="event-description">
-                        Kick off our weekend with a cocktail-style reception featuring dinner, drinks, and a warm welcome. Join us for an evening of mingling, music, and celebration. The party is on a paved terrace—no sand or grass—so dress to celebrate in style!
-                    </div>
-                    <div class="event-attire">Attire: Cocktail - Cocktail dresses, rompers, jumpsuits, collared shirts and pants (no jacket required)</div>
-                </div>
-            </div>
-
-            <!-- Saturday -->
-            <div class="schedule-day">
-                <h3 class="day-title">Saturday</h3>
-                <p class="day-date">January 31, 2026</p>
-                
-                <div class="event">
-                    <div class="event-name">Wedding Ceremony & Reception</div>
-                    <div class="event-time">4:30 PM - 11:00 PM</div>
-                    <div class="event-location">Codex Restaurant</div>
-                    <div class="event-description">
-                        It's the Big Day! Please make your way to Codex to be seated by 4:45 PM sharp—the ceremony will begin promptly. We'll exchange vows with our toes in the sand, enjoy cocktail hour on the grass under the Punta Mita sky, and then enjoy the restaurant for dinner and dancing.
-                    </div>
-                    <div class="event-attire">Attire: Beach Chic - Dresses that fall past the knee (flowy, elegant, comfortable), suits or dress pants with button-up (ties optional)</div>
-                </div>
-            </div>
-
-            <!-- Sunday -->
-            <div class="schedule-day">
-                <h3 class="day-title">Sunday</h3>
-                <p class="day-date">February 1, 2026</p>
-                
-                <div class="event">
-                    <div class="event-name">Farewell Brunch</div>
-                    <div class="event-time">9:00 AM - 11:00 AM</div>
-                    <div class="event-location">Tuki Patio</div>
-                    <div class="event-description">
-                        We'll be gathering for one last bite together before takeoff—join us to enjoy the breakfast buffet and soak in the final moments of paradise.
-                    </div>
-                    <div class="event-attire">Attire: Cute & Comfy - Sundresses, flowy sets, linen pants</div>
-                </div>
-            </div>
+            <div id="schedule-loading" class="loading">Loading schedule...</div>
+            <div id="schedule-content"></div>
         </section>
 
         <!-- MAP SECTION -->
@@ -647,7 +648,6 @@
                         <g id="table1-group">
                             <text x="450" y="15" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 1</text>
                             
-                            <!-- Invisible overlays -->
                             <rect class="section-overlay" id="section-1-A" x="120" y="50" width="80" height="80" rx="3"/>
                             <rect class="section-overlay" id="section-1-B" x="200" y="50" width="80" height="80" rx="3"/>
                             <rect class="section-overlay" id="section-1-C" x="280" y="50" width="80" height="80" rx="3"/>
@@ -656,10 +656,8 @@
                             <rect class="section-overlay" id="section-1-F" x="520" y="50" width="80" height="80" rx="3"/>
                             <rect class="section-overlay" id="section-1-G" x="600" y="50" width="80" height="80" rx="3"/>
                             
-                            <!-- Table outline -->
                             <rect x="120" y="50" width="560" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <!-- Dividers -->
                             <line x1="200" y1="50" x2="200" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <line x1="280" y1="50" x2="280" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <line x1="360" y1="50" x2="360" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
@@ -667,7 +665,6 @@
                             <line x1="520" y1="50" x2="520" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <line x1="600" y1="50" x2="600" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <!-- Labels -->
                             <text x="160" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">A</text>
                             <text x="240" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">B</text>
                             <text x="320" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">C</text>
@@ -676,7 +673,7 @@
                             <text x="560" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
                             <text x="640" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
                             
-                            <!-- Chairs (top) -->
+                            <!-- Chairs (simplified for brevity - top row) -->
                             <rect x="130" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="172" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="210" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
@@ -692,7 +689,7 @@
                             <rect x="610" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="652" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <!-- Chairs (bottom) -->
+                            <!-- Bottom row -->
                             <rect x="130" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="172" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="210" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
@@ -709,7 +706,7 @@
                             <rect x="652" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                         </g>
                         
-                        <!-- Table 2 (same structure) -->
+                        <!-- Table 2 -->
                         <g id="table2-group">
                             <text x="450" y="175" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 2</text>
                             
@@ -738,7 +735,7 @@
                             <text x="560" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
                             <text x="640" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
                             
-                            <!-- Chairs (top) -->
+                            <!-- Top row chairs -->
                             <rect x="130" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="172" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="210" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
@@ -754,7 +751,7 @@
                             <rect x="610" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="652" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <!-- Chairs (bottom) -->
+                            <!-- Bottom row -->
                             <rect x="130" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="172" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             <rect x="210" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
@@ -777,125 +774,274 @@
 
         <!-- TRAVEL SECTION -->
         <section id="travel" class="section">
-            <h2 class="section-title">Travel & FAQ</h2>
-            
-            <div class="info-box">
-                <h3 class="info-title">Getting There</h3>
-                <p class="info-text">
-                    <strong>Airport:</strong> Puerto Vallarta International Airport (PVR)
-                </p>
-                <p class="info-text">
-                    The nearest airport is about 30 minutes from the hotel. The Conrad offers airport transfer services—please contact the hotel to arrange.
-                </p>
-            </div>
+            <h2 class="section-title">Travel Information</h2>
+            <div id="travel-loading" class="loading">Loading travel information...</div>
+            <div id="travel-content"></div>
+        </section>
 
-            <div class="info-box">
-                <h3 class="info-title">Hotel Information</h3>
-                <p class="info-text">
-                    <strong>Conrad Punta de Mita</strong><br>
-                    Carr. Punta de Mita - Sayulita Km 2<br>
-                    Punta Mita, Nayarit 63734, Mexico
-                </p>
-                <p class="info-text">
-                    We've arranged a special group rate. To book your room with the group rate, please email or call:<br>
-                    <strong>Email:</strong> PVRPM.RES@ConradHotels.com<br>
-                    <strong>Phone:</strong> 1-844-298-4300 (USA) or 800-288-9985 (MX & Int'l)
-                </p>
-                <p class="info-text">
-                    <strong>Recommended Dates:</strong> January 29 - February 1, 2026
-                </p>
-            </div>
-
-            <div class="info-box">
-                <h3 class="info-title">What to Pack</h3>
-                <p class="info-text">
-                    • Swimsuits and cover-ups<br>
-                    • Sunscreen and sunglasses<br>
-                    • Cocktail attire for Friday night<br>
-                    • Beach chic outfit for the wedding<br>
-                    • Comfortable shoes for dancing<br>
-                    • Light layers for evening breeze
-                </p>
-            </div>
-
-            <div class="info-box">
-                <h3 class="info-title">Questions?</h3>
-                <p class="info-text">
-                    If you have any questions about the weekend, please don't hesitate to reach out to us. We can't wait to celebrate with you!
-                </p>
-            </div>
+        <!-- FAQ SECTION -->
+        <section id="faq" class="section">
+            <h2 class="section-title">FAQ</h2>
+            <div id="faq-loading" class="loading">Loading FAQ...</div>
+            <div id="faq-content"></div>
         </section>
     </div>
 
     <script>
+        // CONFIGURATION - Google Sheet URLs
+        const SHEET_BASE_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTnii7jdJ1CNlEotrqzCs1nQRv7OR2iT7nqeyCYem0wRXGCL4RRKC8Awr-M963Nr18Xr4j2J71WV5vd/pub';
+        const SHEETS = {
+            seating: `${SHEET_BASE_URL}?gid=0&single=true&output=csv`,
+            schedule: `${SHEET_BASE_URL}?gid=1814110480&single=true&output=csv`,
+            faq: `${SHEET_BASE_URL}?gid=1666160613&single=true&output=csv`,
+            travel: `${SHEET_BASE_URL}?gid=93860544&single=true&output=csv`,
+            mapEvents: `${SHEET_BASE_URL}?gid=1344707168&single=true&output=csv`,
+            home: `${SHEET_BASE_URL}?gid=895216545&single=true&output=csv`
+        };
+
+        // CSV Parser
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            return lines.slice(1).filter(line => line.trim()).map(line => {
+                const values = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                values.push(current.trim());
+                
+                const obj = {};
+                headers.forEach((header, i) => {
+                    obj[header] = values[i] || '';
+                });
+                return obj;
+            });
+        }
+
+        // Load Home Page
+        async function loadHome() {
+            try {
+                const response = await fetch(SHEETS.home);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                
+                const homeContent = document.getElementById('home-content');
+                const content = {};
+                data.forEach(row => {
+                    content[row.Section] = row.Content;
+                });
+                
+                homeContent.innerHTML = `
+                    <h2 class="section-title">${content['Title'] || 'Welcome to Our Wedding Weekend'}</h2>
+                    <div class="welcome-box">
+                        <p class="welcome-text">${content['Paragraph 1'] || ''}</p>
+                        <div class="event-date">${content['Subtitle'] || 'January 29 - February 1, 2026'}</div>
+                        <p class="welcome-text">${content['Paragraph 2'] || ''}</p>
+                    </div>
+                `;
+                
+                document.getElementById('home-loading').style.display = 'none';
+                homeContent.style.display = 'block';
+            } catch (error) {
+                console.error('Error loading home:', error);
+                document.getElementById('home-loading').textContent = 'Error loading content. Please refresh the page.';
+            }
+        }
+
+        // Load Schedule
+        async function loadSchedule() {
+            try {
+                const response = await fetch(SHEETS.schedule);
+                const csvText = await response.text();
+                const events = parseCSV(csvText).sort((a, b) => parseInt(a.Order) - parseInt(b.Order));
+                
+                const scheduleContent = document.getElementById('schedule-content');
+                const groupedByDay = {};
+                
+                events.forEach(event => {
+                    if (!groupedByDay[event.Day]) {
+                        groupedByDay[event.Day] = {
+                            date: event.Date,
+                            events: []
+                        };
+                    }
+                    groupedByDay[event.Day].events.push(event);
+                });
+                
+                scheduleContent.innerHTML = Object.entries(groupedByDay).map(([day, data]) => `
+                    <div class="schedule-day">
+                        <h3 class="day-title">${day}</h3>
+                        <p class="day-date">${data.date}</p>
+                        ${data.events.map(event => `
+                            <div class="event">
+                                <div class="event-name">${event['Event Name']}</div>
+                                <div class="event-time">${event.Time}</div>
+                                ${event.Location ? `<div class="event-location">${event.Location}</div>` : ''}
+                                ${event.Description ? `<div class="event-description">${event.Description}</div>` : ''}
+                                ${event.Attire ? `<div class="event-attire">Attire: ${event.Attire}</div>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+                
+                document.getElementById('schedule-loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+                document.getElementById('schedule-loading').textContent = 'Error loading schedule. Please refresh the page.';
+            }
+        }
+
+        // Load Map Events
+        let mapEventData = {};
+        async function loadMapEvents() {
+            try {
+                const response = await fetch(SHEETS.mapEvents);
+                const csvText = await response.text();
+                const events = parseCSV(csvText);
+                
+                events.forEach(event => {
+                    mapEventData[event['Location ID']] = {
+                        name: event['Event Name'],
+                        time: event.Time,
+                        location: event['Location Name'],
+                        description: event.Description,
+                        attire: event.Attire
+                    };
+                });
+            } catch (error) {
+                console.error('Error loading map events:', error);
+            }
+        }
+
+        // Load Travel
+        async function loadTravel() {
+            try {
+                const response = await fetch(SHEETS.travel);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                
+                const travelContent = document.getElementById('travel-content');
+                const content = {};
+                data.forEach(row => {
+                    content[row.Section] = row.Content;
+                });
+                
+                travelContent.innerHTML = `
+                    <div class="info-box">
+                        <h3 class="info-title">Getting There</h3>
+                        <p class="info-text">
+                            <strong>Airport:</strong> ${content['Airport'] || ''}<br><br>
+                            ${content['Airport Details'] || ''}
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="info-title">Hotel Information</h3>
+                        <p class="info-text">
+                            <strong>${content['Hotel Name'] || ''}</strong><br>
+                            ${content['Hotel Address'] || ''}<br><br>
+                            ${content['Booking Info'] || ''}<br>
+                            <strong>Email:</strong> ${content['Booking Email'] || ''}<br>
+                            <strong>Phone:</strong> ${content['Booking Phone'] || ''}<br><br>
+                            <strong>Recommended Dates:</strong> ${content['Recommended Dates'] || ''}
+                        </p>
+                    </div>
+                `;
+                
+                document.getElementById('travel-loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading travel:', error);
+                document.getElementById('travel-loading').textContent = 'Error loading travel info. Please refresh the page.';
+            }
+        }
+
+        // Load FAQ with Accordion
+        async function loadFAQ() {
+            try {
+                const response = await fetch(SHEETS.faq);
+                const csvText = await response.text();
+                const faqs = parseCSV(csvText).sort((a, b) => parseInt(a.Order) - parseInt(b.Order));
+                
+                const faqContent = document.getElementById('faq-content');
+                const groupedBySection = {};
+                
+                faqs.forEach(faq => {
+                    if (!groupedBySection[faq.Section]) {
+                        groupedBySection[faq.Section] = [];
+                    }
+                    groupedBySection[faq.Section].push(faq);
+                });
+                
+                faqContent.innerHTML = Object.entries(groupedBySection).map(([section, items]) => `
+                    <div class="faq-section-header">${section}</div>
+                    ${items.map((faq, index) => `
+                        <div class="faq-item" id="faq-${section}-${index}">
+                            <div class="faq-question" onclick="toggleFAQ('${section}-${index}')">
+                                <span class="faq-question-text">${faq.Question}</span>
+                                <span class="faq-icon">▶</span>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content">${faq.Answer}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                `).join('');
+                
+                document.getElementById('faq-loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading FAQ:', error);
+                document.getElementById('faq-loading').textContent = 'Error loading FAQ. Please refresh the page.';
+            }
+        }
+
+        // Toggle FAQ Item
+        function toggleFAQ(id) {
+            const item = document.getElementById(`faq-${id}`);
+            item.classList.toggle('open');
+        }
+
         // Navigation
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
             
-            // Remove active from all tabs
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Show selected section
             document.getElementById(sectionId).classList.add('active');
-            
-            // Activate clicked tab
             event.target.classList.add('active');
             
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Map Interaction
-        const eventData = {
-            'activity-pool': {
-                name: 'Pool Day',
-                time: 'Friday, 10:00 AM - 3:00 PM',
-                location: 'Activity Pool (by Mezquite)',
-                description: 'Join us poolside for lunch, drinks, and good vibes. Bring your swimsuit and sunscreen!',
-                attire: 'Swimsuits and sunscreen'
-            },
-            'aura': {
-                name: 'Welcome Dinner',
-                time: 'Friday, 7:30 PM - 9:30 PM',
-                location: 'Aura',
-                description: 'Cocktail-style reception with dinner, drinks, and a warm welcome.',
-                attire: 'Cocktail attire'
-            },
-            'codex': {
-                name: 'Wedding Ceremony & Reception',
-                time: 'Saturday, 4:30 PM - 11:00 PM',
-                location: 'Codex Restaurant',
-                description: 'Ceremony begins at 5:00 PM. We\'ll exchange vows on the beach, cocktail hour on the grass, then dinner and dancing.',
-                attire: 'Beach Chic'
-            },
-            'tuki': {
-                name: 'Farewell Brunch',
-                time: 'Sunday, 9:00 AM - 11:00 AM',
-                location: 'Tuki Patio',
-                description: 'One last bite together before takeoff. Enjoy the breakfast buffet!',
-                attire: 'Cute & Comfy'
-            }
-        };
-
         document.querySelectorAll('.map-location').forEach(location => {
             location.addEventListener('click', function() {
                 const locationKey = this.dataset.location;
-                const event = eventData[locationKey];
+                const event = mapEventData[locationKey];
                 
-                // Remove active from all locations
+                if (!event) return;
+                
                 document.querySelectorAll('.map-location').forEach(loc => {
                     loc.classList.remove('active');
                 });
                 
-                // Add active to clicked location
                 this.classList.add('active');
                 
-                // Update event details
                 const detailsBox = document.getElementById('event-details');
                 detailsBox.classList.remove('empty');
                 detailsBox.innerHTML = `
@@ -908,42 +1054,25 @@
             });
         });
 
-        // Seating Chart Functionality
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTnii7jdJ1CNlEotrqzCs1nQRv7OR2iT7nqeyCYem0wRXGCL4RRKC8Awr-M963Nr18Xr4j2J71WV5vd/pub?gid=0&single=true&output=csv';
+        // Seating Chart (keeping existing logic but using new sheet reference)
         let guestData = [];
 
         async function loadGuestData() {
             try {
-                const response = await fetch(SHEET_URL);
+                const response = await fetch(SHEETS.seating);
                 if (!response.ok) throw new Error('Failed to load');
                 
                 const csvText = await response.text();
-                const rows = csvText.split('\n').slice(1);
+                guestData = parseCSV(csvText).filter(guest => guest.name || guest.Name);
                 
-                guestData = rows
-                    .filter(row => row.trim())
-                    .map(row => {
-                        const values = [];
-                        let current = '';
-                        let inQuotes = false;
-                        
-                        for (let i = 0; i < row.length; i++) {
-                            const char = row[i];
-                            if (char === '"') {
-                                inQuotes = !inQuotes;
-                            } else if (char === ',' && !inQuotes) {
-                                values.push(current.trim());
-                                current = '';
-                            } else {
-                                current += char;
-                            }
-                        }
-                        values.push(current.trim());
-                        
-                        const [name, table, section, coupleId, notes] = values;
-                        return { name: name || '', table: table || '', section: section || '', coupleId: coupleId || '', notes: notes || '' };
-                    })
-                    .filter(guest => guest.name);
+                // Normalize column names
+                guestData = guestData.map(g => ({
+                    name: g.name || g.Name || g['Guest Name'] || '',
+                    table: g.table || g.Table || '',
+                    section: g.section || g.Section || '',
+                    coupleId: g.coupleId || g.couple_ID || g['couple_ID'] || '',
+                    notes: g.notes || g.Notes || ''
+                }));
                     
             } catch (error) {
                 console.error('Error loading guest data:', error);
@@ -953,7 +1082,6 @@
         const searchInput = document.getElementById('searchInput');
         const resultDiv = document.getElementById('result');
         const autocompleteDropdown = document.getElementById('autocompleteDropdown');
-        let selectedIndex = -1;
         let matchingGuests = [];
 
         function showGuestSeating(guest) {
@@ -1055,7 +1183,19 @@
             }
         });
 
-        loadGuestData();
+        // Initialize
+        async function init() {
+            await Promise.all([
+                loadHome(),
+                loadSchedule(),
+                loadMapEvents(),
+                loadTravel(),
+                loadFAQ(),
+                loadGuestData()
+            ]);
+        }
+
+        init();
     </script>
 </body>
 </html>

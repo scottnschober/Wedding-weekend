@@ -563,6 +563,29 @@
             transform: scale(1.05);
         }
 
+        .video-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .video-play-icon {
+            background: rgba(0, 0, 0, 0.85);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
         /* Lightbox Styles */
         .lightbox {
             display: none;
@@ -949,7 +972,11 @@
             <!-- Lightbox -->
             <div id="lightbox" class="lightbox">
                 <span class="lightbox-close">&times;</span>
-                <img class="lightbox-content" id="lightbox-img">
+                <img class="lightbox-content" id="lightbox-img" style="display: none;">
+                <video class="lightbox-content" id="lightbox-video" controls style="display: none;">
+                    <source id="lightbox-video-source" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <div class="lightbox-caption" id="lightbox-caption"></div>
                 <button class="lightbox-nav lightbox-prev">&#10094;</button>
                 <button class="lightbox-nav lightbox-next">&#10095;</button>
@@ -1252,17 +1279,34 @@
             try {
                 // Fetch photos from Google Drive folder
                 const apiKey = 'AIzaSyAYrXPbdenTOfuVDhcaY1oDBGit1pb2mfg';
-                const url = `https://www.googleapis.com/drive/v3/files?q='${DRIVE_FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink,createdTime)&orderBy=createdTime+desc&key=${apiKey}`;
                 
-                const response = await fetch(url);
-                const data = await response.json();
+                // Fetch images
+                const imageUrl = `https://www.googleapis.com/drive/v3/files?q='${DRIVE_FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&fields=files(id,name,thumbnailLink,webContentLink,createdTime,mimeType)&orderBy=createdTime+desc&key=${apiKey}`;
                 
-                if (!data.files || data.files.length === 0) {
+                // Fetch videos
+                const videoUrl = `https://www.googleapis.com/drive/v3/files?q='${DRIVE_FOLDER_ID}'+in+parents+and+mimeType+contains+'video/'&fields=files(id,name,thumbnailLink,webContentLink,createdTime,mimeType)&orderBy=createdTime+desc&key=${apiKey}`;
+                
+                const [imageResponse, videoResponse] = await Promise.all([
+                    fetch(imageUrl),
+                    fetch(videoUrl)
+                ]);
+                
+                const imageData = await imageResponse.json();
+                const videoData = await videoResponse.json();
+                
+                // Combine and sort by creation time
+                const images = (imageData.files || []).map(f => ({ ...f, type: 'image' }));
+                const videos = (videoData.files || []).map(f => ({ ...f, type: 'video' }));
+                
+                allPhotos = [...images, ...videos].sort((a, b) => 
+                    new Date(b.createdTime) - new Date(a.createdTime)
+                );
+                
+                if (allPhotos.length === 0) {
                     document.getElementById('photo-gallery-loading').textContent = 'No photos yet. Check back soon!';
                     return;
                 }
                 
-                allPhotos = data.files;
                 renderGallery(allPhotos);
                 
                 document.getElementById('photo-gallery-loading').style.display = 'none';
@@ -1282,15 +1326,30 @@
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
                 
-                const img = document.createElement('img');
-                // Use thumbnailLink for gallery view
-                img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
-                img.alt = photo.name;
-                img.loading = 'lazy';
+                if (photo.type === 'video') {
+                    // For videos, show thumbnail with play icon
+                    const img = document.createElement('img');
+                    img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
+                    img.alt = photo.name;
+                    img.loading = 'lazy';
+                    
+                    const playIcon = document.createElement('div');
+                    playIcon.className = 'video-play-icon';
+                    playIcon.innerHTML = '▶';
+                    
+                    item.appendChild(img);
+                    item.appendChild(playIcon);
+                } else {
+                    // For images
+                    const img = document.createElement('img');
+                    img.src = photo.thumbnailLink || `https://drive.google.com/thumbnail?id=${photo.id}&sz=w400`;
+                    img.alt = photo.name;
+                    img.loading = 'lazy';
+                    
+                    item.appendChild(img);
+                }
                 
-                item.appendChild(img);
                 item.onclick = () => openLightbox(index);
-                
                 container.appendChild(item);
             });
         }
@@ -1304,6 +1363,8 @@
         }
 
         function closeLightbox() {
+            const video = document.getElementById('lightbox-video');
+            video.pause();
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
@@ -1316,12 +1377,31 @@
             const photo = allPhotos[index];
             
             const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            const videoSource = document.getElementById('lightbox-video-source');
             const caption = document.getElementById('lightbox-caption');
             
-            // Use the proper Google Drive image URL
-            img.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1920`;
-            img.alt = photo.name;
-            caption.textContent = photo.name;
+            if (photo.type === 'video') {
+                // Show video, hide image
+                img.style.display = 'none';
+                video.style.display = 'block';
+                
+                // Set video source - use webContentLink for downloadable link
+                videoSource.src = `https://drive.google.com/uc?export=download&id=${photo.id}`;
+                video.load();
+                
+                caption.textContent = photo.name;
+            } else {
+                // Show image, hide video
+                video.style.display = 'none';
+                video.pause(); // Stop any playing video
+                img.style.display = 'block';
+                
+                // Use the proper Google Drive image URL
+                img.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1920`;
+                img.alt = photo.name;
+                caption.textContent = photo.name;
+            }
         }
 
         function nextPhoto() {

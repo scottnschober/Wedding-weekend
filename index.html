@@ -753,11 +753,11 @@
             <h2 class="section-title">Resort Map</h2>
             
             <!-- Conrad Resort Map PDF -->
-            <div style="margin-bottom: 3rem;">
+            <div style="margin-bottom: 2rem;">
                 <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.1);">
                     <iframe 
                         src="https://drive.google.com/file/d/16lo6bUuAnJN6sdjhmYgFFmkQk84Vcqhc/preview" 
-                        style="width: 100%; height: 600px; border: none; border-radius: 4px;"
+                        style="width: 100%; height: 800px; border: none; border-radius: 4px;"
                         allow="autoplay">
                     </iframe>
                     <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--warm-gray);">
@@ -765,58 +765,6 @@
                             📄 Open full map in new window
                         </a>
                     </p>
-                </div>
-            </div>
-
-            <!-- Interactive Event Locations -->
-            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--dark-gray); text-align: center;">Event Locations</h3>
-            
-            <div class="map-container">
-                <p style="text-align: center; color: var(--warm-gray); margin-bottom: 1.5rem;">Click on a location to see event details</p>
-                
-                <svg class="map-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Beach at bottom -->
-                    <rect x="0" y="500" width="800" height="100" fill="#E8DCC8" opacity="0.3"/>
-                    <text x="400" y="560" text-anchor="middle" font-size="14" fill="var(--warm-gray)" opacity="0.6">Beach</text>
-                    
-                    <!-- Main hotel building -->
-                    <rect x="150" y="50" width="500" height="200" fill="var(--white)" stroke="var(--warm-gray)" stroke-width="2"/>
-                    <text x="400" y="145" text-anchor="middle" font-size="16" fill="var(--dark-gray)">Conrad Punta de Mita</text>
-                    <text x="400" y="165" text-anchor="middle" font-size="12" fill="var(--warm-gray)">Main Hotel</text>
-                    
-                    <!-- Activity Pool (by Mezquite) - Left side -->
-                    <g class="map-location" data-location="activity-pool">
-                        <ellipse class="location-shape" cx="200" cy="350" rx="70" ry="50"/>
-                        <text class="location-label" x="200" y="340" text-anchor="middle" font-weight="600">Activity Pool</text>
-                        <text class="location-label" x="200" y="355" text-anchor="middle" font-size="10">(by Mezquite)</text>
-                        <text class="location-label" x="200" y="368" text-anchor="middle" font-size="10" fill="var(--accent)">Pool Day</text>
-                    </g>
-                    
-                    <!-- Aura - Center -->
-                    <g class="map-location" data-location="aura">
-                        <rect class="location-shape" x="340" y="280" width="120" height="80" rx="3"/>
-                        <text class="location-label" x="400" y="315" text-anchor="middle" font-weight="600">Aura</text>
-                        <text class="location-label" x="400" y="332" text-anchor="middle" font-size="10" fill="var(--accent)">Welcome Dinner</text>
-                    </g>
-                    
-                    <!-- Codex - Right side by beach -->
-                    <g class="map-location" data-location="codex">
-                        <rect class="location-shape" x="520" y="320" width="140" height="120" rx="3"/>
-                        <text class="location-label" x="590" y="370" text-anchor="middle" font-weight="600">Codex</text>
-                        <text class="location-label" x="590" y="387" text-anchor="middle" font-size="10" fill="var(--accent)">Wedding</text>
-                        <text class="location-label" x="590" y="401" text-anchor="middle" font-size="10" fill="var(--accent)">Ceremony & Reception</text>
-                    </g>
-                    
-                    <!-- Tuki Patio - Left side, upper -->
-                    <g class="map-location" data-location="tuki">
-                        <rect class="location-shape" x="70" y="120" width="100" height="70" rx="3"/>
-                        <text class="location-label" x="120" y="150" text-anchor="middle" font-weight="600">Tuki Patio</text>
-                        <text class="location-label" x="120" y="167" text-anchor="middle" font-size="10" fill="var(--accent)">Farewell Brunch</text>
-                    </g>
-                </svg>
-
-                <div id="event-details" class="event-details-box empty">
-                    Click a location above to see event details
                 </div>
             </div>
         </section>
@@ -842,136 +790,149 @@
 
             <div class="diagram-section">
                 <div class="venue-layout" id="venueDiagram">
-                    <svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Sweetheart Table -->
+                    <svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sweetheart Table - Top Center -->
                         <g id="sweetheart-group">
-                            <text x="55" y="140" class="location-label" style="font-size: 10px; opacity: 0.6;">Sweetheart</text>
-                            <rect class="section-overlay" id="sweetheart" x="30" y="150" width="50" height="80" rx="3"/>
-                            <rect x="30" y="150" width="50" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <text x="500" y="25" class="location-label" style="font-size: 12px; opacity: 0.6;">Sweetheart Table</text>
+                            <rect class="section-overlay" id="sweetheart" x="400" y="40" width="200" height="80" rx="3"/>
+                            <rect x="400" y="40" width="200" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <!-- Chairs -->
+                            <rect x="440" y="15" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="540" y="15" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="440" y="125" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="540" y="125" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                         </g>
                         
-                        <!-- Table 1 -->
+                        <!-- LEFT SIDE - Tables 1 & 2 (12 seats each) -->
+                        
+                        <!-- Table 1 - Left Top (12 seats) -->
                         <g id="table1-group">
-                            <text x="450" y="15" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 1</text>
+                            <text x="180" y="170" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 1</text>
+                            <rect class="section-overlay" id="section-1" x="60" y="185" width="240" height="400" rx="3"/>
+                            <rect x="60" y="185" width="240" height="400" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="180" y="395" class="location-label" style="font-size: 16px;">1</text>
                             
-                            <rect class="section-overlay" id="section-1-A" x="120" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-B" x="200" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-C" x="280" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-D" x="360" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-E" x="440" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-F" x="520" y="50" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-1-G" x="600" y="50" width="80" height="80" rx="3"/>
+                            <!-- Left side chairs (6) -->
+                            <rect x="30" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="30" y="270" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="30" y="330" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="30" y="390" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="30" y="450" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="30" y="510" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <rect x="120" y="50" width="560" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            
-                            <line x1="200" y1="50" x2="200" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="280" y1="50" x2="280" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="360" y1="50" x2="360" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="440" y1="50" x2="440" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="520" y1="50" x2="520" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="600" y1="50" x2="600" y2="130" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            
-                            <text x="160" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">A</text>
-                            <text x="240" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">B</text>
-                            <text x="320" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">C</text>
-                            <text x="400" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">D</text>
-                            <text x="480" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">E</text>
-                            <text x="560" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
-                            <text x="640" y="95" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
-                            
-                            <!-- Chairs (simplified for brevity - top row) -->
-                            <rect x="130" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="172" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="210" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="252" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="290" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="332" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="370" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="412" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="450" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="492" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="530" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="572" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="610" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="652" y="28" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            
-                            <!-- Bottom row -->
-                            <rect x="130" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="172" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="210" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="252" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="290" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="332" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="370" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="412" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="450" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="492" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="530" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="572" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="610" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="652" y="134" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <!-- Right side chairs (6) -->
+                            <rect x="310" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="270" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="330" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="390" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="450" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="510" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                         </g>
                         
-                        <!-- Table 2 -->
+                        <!-- Table 2 - Left Bottom (12 seats) -->
                         <g id="table2-group">
-                            <text x="450" y="175" class="location-label" style="font-size: 11px; opacity: 0.6;">Table 2</text>
+                            <text x="460" y="170" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 2</text>
+                            <rect class="section-overlay" id="section-2" x="340" y="185" width="240" height="400" rx="3"/>
+                            <rect x="340" y="185" width="240" height="400" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="460" y="395" class="location-label" style="font-size: 16px;">2</text>
                             
-                            <rect class="section-overlay" id="section-2-A" x="120" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-B" x="200" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-C" x="280" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-D" x="360" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-E" x="440" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-F" x="520" y="210" width="80" height="80" rx="3"/>
-                            <rect class="section-overlay" id="section-2-G" x="600" y="210" width="80" height="80" rx="3"/>
+                            <!-- Left side chairs (6) -->
+                            <rect x="310" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="270" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="330" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="390" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="450" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="310" y="510" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <rect x="120" y="210" width="560" height="80" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <!-- Right side chairs (6) -->
+                            <rect x="590" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="590" y="270" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="590" y="330" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="590" y="390" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="590" y="450" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="590" y="510" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- RIGHT SIDE - Tables 3, 4, 5, 6 (8 seats each) -->
+                        
+                        <!-- Table 3 - Right Top Left (8 seats) -->
+                        <g id="table3-group">
+                            <text x="700" y="170" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 3</text>
+                            <rect class="section-overlay" id="section-3" x="630" y="185" width="140" height="240" rx="3"/>
+                            <rect x="630" y="185" width="140" height="240" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="700" y="315" class="location-label" style="font-size: 16px;">3</text>
                             
-                            <line x1="200" y1="210" x2="200" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="280" y1="210" x2="280" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="360" y1="210" x2="360" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="440" y1="210" x2="440" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="520" y1="210" x2="520" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <line x1="600" y1="210" x2="600" y2="290" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <!-- Left side chairs (4) -->
+                            <rect x="600" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="260" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="310" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="360" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <text x="160" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">A</text>
-                            <text x="240" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">B</text>
-                            <text x="320" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">C</text>
-                            <text x="400" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">D</text>
-                            <text x="480" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">E</text>
-                            <text x="560" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">F</text>
-                            <text x="640" y="255" class="location-label" style="font-size: 12px; opacity: 0.4;">G</text>
+                            <!-- Right side chairs (4) -->
+                            <rect x="780" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="260" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="310" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="360" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Table 4 - Right Top Right (8 seats) -->
+                        <g id="table4-group">
+                            <text x="870" y="170" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 4</text>
+                            <rect class="section-overlay" id="section-4" x="800" y="185" width="140" height="240" rx="3"/>
+                            <rect x="800" y="185" width="140" height="240" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="870" y="315" class="location-label" style="font-size: 16px;">4</text>
                             
-                            <!-- Top row chairs -->
-                            <rect x="130" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="172" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="210" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="252" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="290" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="332" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="370" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="412" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="450" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="492" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="530" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="572" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="610" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="652" y="188" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <!-- Left side chairs (4) -->
+                            <rect x="770" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="260" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="310" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="360" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                             
-                            <!-- Bottom row -->
-                            <rect x="130" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="172" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="210" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="252" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="290" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="332" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="370" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="412" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="450" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="492" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="530" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="572" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="610" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
-                            <rect x="652" y="294" width="18" height="18" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <!-- Right side chairs (4) -->
+                            <rect x="950" y="210" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="260" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="310" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="360" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Table 5 - Right Bottom Left (8 seats) -->
+                        <g id="table5-group">
+                            <text x="700" y="445" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 5</text>
+                            <rect class="section-overlay" id="section-5" x="630" y="460" width="140" height="240" rx="3"/>
+                            <rect x="630" y="460" width="140" height="240" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="700" y="590" class="location-label" style="font-size: 16px;">5</text>
+                            
+                            <!-- Left side chairs (4) -->
+                            <rect x="600" y="485" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="535" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="585" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="600" y="635" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Right side chairs (4) -->
+                            <rect x="780" y="485" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="535" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="585" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="780" y="635" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Table 6 - Right Bottom Right (8 seats) -->
+                        <g id="table6-group">
+                            <text x="870" y="445" class="location-label" style="font-size: 12px; opacity: 0.6;">Table 6</text>
+                            <rect class="section-overlay" id="section-6" x="800" y="460" width="140" height="240" rx="3"/>
+                            <rect x="800" y="460" width="140" height="240" rx="3" fill="none" stroke="var(--warm-gray)" stroke-width="2"/>
+                            <text x="870" y="590" class="location-label" style="font-size: 16px;">6</text>
+                            
+                            <!-- Left side chairs (4) -->
+                            <rect x="770" y="485" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="535" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="585" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="770" y="635" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            
+                            <!-- Right side chairs (4) -->
+                            <rect x="950" y="485" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="535" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="585" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
+                            <rect x="950" y="635" width="20" height="20" rx="2" fill="none" stroke="var(--warm-gray)" stroke-width="1.5"/>
                         </g>
                     </svg>
                 </div>
@@ -1624,7 +1585,7 @@
 
             const tableText = guest.table === 'Sweetheart' 
                 ? 'Sweetheart Table'
-                : `Table ${guest.table}-${guest.section}`;
+                : `Table ${guest.table}`;
             
             let seatedWith = '';
             if (guest.coupleId && guest.coupleId !== '') {
@@ -1646,7 +1607,7 @@
             if (guest.table === 'Sweetheart') {
                 document.getElementById('sweetheart')?.classList.add('highlight');
             } else {
-                const sectionId = `section-${guest.table}-${guest.section}`;
+                const sectionId = `section-${guest.table}`;
                 document.getElementById(sectionId)?.classList.add('highlight');
             }
         }

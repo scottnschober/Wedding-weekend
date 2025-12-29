@@ -1891,6 +1891,7 @@
                 guestData = guestData.map(g => ({
                     name: g['Guest Name'] || g.name || g.Name || '',
                     table: g.Table || g.table || '',
+                    seat: g.Seat || g.seat || g['Seat Number'] || '',
                     section: g.Section || g.section || '',
                     coupleId: g['Couple ID'] || g.coupleId || g.couple_ID || g['couple_ID'] || '',
                     notes: g.Notes || g.notes || ''

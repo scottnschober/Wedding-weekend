@@ -1953,12 +1953,56 @@
                 });
             });
 
-            // Highlight the guest's specific chair (primary - GOLD)
+            // Reset all tables to default
+            const allTableRects = document.querySelectorAll('svg rect[fill="#f1f5f9"], svg rect[fill="#fbbf24"]');
+            allTableRects.forEach(rect => {
+                const currentFill = rect.getAttribute('fill');
+                if (currentFill === '#fbbf24') {
+                    rect.setAttribute('fill', '#fbbf24'); // Keep sweetheart gold
+                } else {
+                    rect.setAttribute('fill', '#f1f5f9'); // Reset to gray
+                    rect.setAttribute('stroke', '#94a3b8');
+                    rect.setAttribute('stroke-width', '2');
+                }
+            });
+
+            // Highlight the selected table
+            const guestTable = guest.table.toLowerCase();
+            if (guestTable === 'sweetheart') {
+                const sweetheartTable = document.querySelector('#sweetheart-table rect');
+                if (sweetheartTable) {
+                    sweetheartTable.setAttribute('fill', '#fbbf24');
+                    sweetheartTable.setAttribute('stroke', '#f59e0b');
+                    sweetheartTable.setAttribute('stroke-width', '3');
+                }
+            } else {
+                // Find the table rectangle (they're the large rectangles with specific positions)
+                const tablePositions = {
+                    '1': { x: '60', y: '220' },
+                    '2': { x: '220', y: '220' },
+                    '3': { x: '380', y: '320' },
+                    '4': { x: '540', y: '320' },
+                    '5': { x: '700', y: '320' },
+                    '6': { x: '860', y: '320' }
+                };
+                
+                const pos = tablePositions[guest.table];
+                if (pos) {
+                    const tableRect = document.querySelector(`svg rect[x="${pos.x}"][y="${pos.y}"]`);
+                    if (tableRect) {
+                        tableRect.setAttribute('fill', '#dbeafe'); // Light blue highlight
+                        tableRect.setAttribute('stroke', '#3b82f6'); // Blue border
+                        tableRect.setAttribute('stroke-width', '3');
+                    }
+                }
+            }
+
+            // Highlight the guest's specific chair (primary - SOLID GOLD)
             if (guest.seat) {
                 const guestChair = document.querySelector(`.chair[data-table="${guest.table}"][data-seat="${guest.seat}"]`);
                 if (guestChair) {
                     guestChair.querySelectorAll('rect').forEach(rect => {
-                        rect.setAttribute('fill', '#C9A882');
+                        rect.setAttribute('fill', '#C9A882'); // Solid gold
                         rect.setAttribute('stroke', '#C9A882');
                         rect.setAttribute('stroke-width', '2.5');
                     });
@@ -1969,13 +2013,13 @@
                 }
             }
 
-            // Highlight companion chairs (secondary - LIGHT GOLD)
+            // Highlight companion chairs (secondary - SOLID LIGHT GOLD)
             companionSeats.forEach(({ table, seat }) => {
                 if (seat) {
                     const companionChair = document.querySelector(`.chair[data-table="${table}"][data-seat="${seat}"]`);
                     if (companionChair) {
                         companionChair.querySelectorAll('rect').forEach(rect => {
-                            rect.setAttribute('fill', 'rgba(201, 168, 130, 0.5)');
+                            rect.setAttribute('fill', '#F5DEB3'); // Solid wheat/light gold
                             rect.setAttribute('stroke', '#C9A882');
                             rect.setAttribute('stroke-width', '2');
                         });

@@ -901,8 +901,361 @@
                         <rect x="860" y="320" width="80" height="150" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
                         <text x="900" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 6</text>
                         
-                        <!-- Seats will be dynamically added by JavaScript -->
-                        <g id="seats-container"></g>
+                        <!-- SWEETHEART CHAIRS (2 chairs on top) -->
+                        <g class="chair" data-table="sweetheart" data-seat="1">
+                            <rect x="508" y="97" width="24" height="12" fill="#fde68a" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="506" y="107" width="28" height="20" fill="#fde68a" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="510" y1="127" x2="510" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="530" y1="127" x2="530" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="sweetheart" data-seat="2">
+                            <rect x="568" y="97" width="24" height="12" fill="#fde68a" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="566" y="107" width="28" height="20" fill="#fde68a" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="570" y1="127" x2="570" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="590" y1="127" x2="590" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- TABLE 1 CHAIRS (12 chairs: 6 on each side) -->
+                        <g class="chair" data-table="1" data-seat="1">
+                            <rect x="48" y="202" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="212" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="232" x2="50" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="232" x2="70" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="7">
+                            <rect x="128" y="202" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="212" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="232" x2="130" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="232" x2="150" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="2">
+                            <rect x="48" y="252" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="262" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="282" x2="50" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="282" x2="70" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="8">
+                            <rect x="128" y="252" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="262" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="282" x2="130" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="282" x2="150" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="3">
+                            <rect x="48" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="332" x2="50" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="332" x2="70" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="9">
+                            <rect x="128" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="332" x2="130" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="332" x2="150" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="4">
+                            <rect x="48" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="382" x2="50" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="382" x2="70" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="10">
+                            <rect x="128" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="382" x2="130" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="382" x2="150" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="5">
+                            <rect x="48" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="432" x2="50" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="432" x2="70" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="11">
+                            <rect x="128" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="432" x2="130" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="432" x2="150" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="6">
+                            <rect x="48" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="46" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="50" y1="482" x2="50" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="70" y1="482" x2="70" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="1" data-seat="12">
+                            <rect x="128" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="126" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="130" y1="482" x2="130" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="150" y1="482" x2="150" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- TABLE 2 CHAIRS (12 chairs: 6 on each side) -->
+                        <g class="chair" data-table="2" data-seat="1">
+                            <rect x="208" y="202" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="212" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="232" x2="210" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="232" x2="230" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="7">
+                            <rect x="288" y="202" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="212" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="232" x2="290" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="232" x2="310" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="2">
+                            <rect x="208" y="252" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="262" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="282" x2="210" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="282" x2="230" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="8">
+                            <rect x="288" y="252" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="262" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="282" x2="290" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="282" x2="310" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="3">
+                            <rect x="208" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="332" x2="210" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="332" x2="230" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="9">
+                            <rect x="288" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="332" x2="290" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="332" x2="310" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="4">
+                            <rect x="208" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="382" x2="210" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="382" x2="230" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="10">
+                            <rect x="288" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="382" x2="290" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="382" x2="310" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="5">
+                            <rect x="208" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="432" x2="210" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="432" x2="230" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="11">
+                            <rect x="288" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="432" x2="290" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="432" x2="310" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="6">
+                            <rect x="208" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="206" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="210" y1="482" x2="210" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="230" y1="482" x2="230" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="2" data-seat="12">
+                            <rect x="288" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="286" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="290" y1="482" x2="290" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="310" y1="482" x2="310" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- TABLES 3-6 CHAIRS (8 chairs each: 4 on each side) -->
+                        <g class="chair" data-table="3" data-seat="1">
+                            <rect x="368" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="366" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="370" y1="332" x2="370" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="390" y1="332" x2="390" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="5">
+                            <rect x="448" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="446" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="450" y1="332" x2="450" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="470" y1="332" x2="470" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="2">
+                            <rect x="368" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="366" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="370" y1="382" x2="370" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="390" y1="382" x2="390" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="6">
+                            <rect x="448" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="446" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="450" y1="382" x2="450" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="470" y1="382" x2="470" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="3">
+                            <rect x="368" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="366" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="370" y1="432" x2="370" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="390" y1="432" x2="390" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="7">
+                            <rect x="448" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="446" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="450" y1="432" x2="450" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="470" y1="432" x2="470" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="4">
+                            <rect x="368" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="366" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="370" y1="482" x2="370" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="390" y1="482" x2="390" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="3" data-seat="8">
+                            <rect x="448" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="446" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="450" y1="482" x2="450" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="470" y1="482" x2="470" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="1">
+                            <rect x="528" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="526" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="530" y1="332" x2="530" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="550" y1="332" x2="550" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="5">
+                            <rect x="608" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="606" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="610" y1="332" x2="610" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="630" y1="332" x2="630" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="2">
+                            <rect x="528" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="526" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="530" y1="382" x2="530" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="550" y1="382" x2="550" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="6">
+                            <rect x="608" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="606" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="610" y1="382" x2="610" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="630" y1="382" x2="630" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="3">
+                            <rect x="528" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="526" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="530" y1="432" x2="530" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="550" y1="432" x2="550" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="7">
+                            <rect x="608" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="606" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="610" y1="432" x2="610" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="630" y1="432" x2="630" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="4">
+                            <rect x="528" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="526" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="530" y1="482" x2="530" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="550" y1="482" x2="550" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="4" data-seat="8">
+                            <rect x="608" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="606" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="610" y1="482" x2="610" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="630" y1="482" x2="630" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="1">
+                            <rect x="688" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="686" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="690" y1="332" x2="690" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="710" y1="332" x2="710" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="5">
+                            <rect x="768" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="766" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="770" y1="332" x2="770" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="790" y1="332" x2="790" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="2">
+                            <rect x="688" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="686" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="690" y1="382" x2="690" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="710" y1="382" x2="710" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="6">
+                            <rect x="768" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="766" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="770" y1="382" x2="770" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="790" y1="382" x2="790" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="3">
+                            <rect x="688" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="686" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="690" y1="432" x2="690" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="710" y1="432" x2="710" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="7">
+                            <rect x="768" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="766" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="770" y1="432" x2="770" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="790" y1="432" x2="790" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="4">
+                            <rect x="688" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="686" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="690" y1="482" x2="690" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="710" y1="482" x2="710" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="5" data-seat="8">
+                            <rect x="768" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="766" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="770" y1="482" x2="770" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="790" y1="482" x2="790" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="1">
+                            <rect x="848" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="846" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="850" y1="332" x2="850" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="870" y1="332" x2="870" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="5">
+                            <rect x="928" y="302" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="926" y="312" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="930" y1="332" x2="930" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="950" y1="332" x2="950" y2="340" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="2">
+                            <rect x="848" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="846" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="850" y1="382" x2="850" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="870" y1="382" x2="870" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="6">
+                            <rect x="928" y="352" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="926" y="362" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="930" y1="382" x2="930" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="950" y1="382" x2="950" y2="390" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="3">
+                            <rect x="848" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="846" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="850" y1="432" x2="850" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="870" y1="432" x2="870" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="7">
+                            <rect x="928" y="402" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="926" y="412" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="930" y1="432" x2="930" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="950" y1="432" x2="950" y2="440" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="4">
+                            <rect x="848" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="846" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="850" y1="482" x2="850" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="870" y1="482" x2="870" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <g class="chair" data-table="6" data-seat="8">
+                            <rect x="928" y="452" width="24" height="12" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+                            <rect x="926" y="462" width="28" height="20" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
+                            <line x1="930" y1="482" x2="930" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                            <line x1="950" y1="482" x2="950" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
                     </svg>
                 </div>
             </div>

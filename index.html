@@ -775,7 +775,7 @@
     <div class="header">
         <div class="header-content">
             <h1 class="header-title">Scott & Melinda</h1>
-            <p class="header-subtitle">January 31, 2026 · Conrad Punta de Mita</p>
+            <p class="header-subtitle">January 29 – February 1, 2026 · Conrad Punta de Mita</p>
         </div>
     </div>
 
@@ -864,12 +864,12 @@
                         
                         <!-- Ocean/Beach label -->
                         <text x="500" y="40" text-anchor="middle" fill="#0c4a6e" font-size="16" font-weight="600" opacity="0.7">
-                            🌊 Ocean View 🌊
+                            Ocean View
                         </text>
                         
                         <!-- Sweetheart Table -->
                         <g id="sweetheart-table">
-                            <rect x="480" y="130" width="140" height="60" fill="#10b981" stroke="#047857" stroke-width="2" rx="8"/>
+                            <rect x="480" y="130" width="140" height="60" fill="#C1E1C1" stroke="#228B22" stroke-width="2.5" rx="8"/>
                             <text x="550" y="155" text-anchor="middle" fill="#022c22" font-size="12" font-weight="600">Sweetheart Table</text>
                             <text x="550" y="175" text-anchor="middle" font-size="20">💕</text>
                         </g>
@@ -900,16 +900,16 @@
                         
                         <!-- SWEETHEART CHAIRS (2 chairs on top) -->
                         <g class="chair" data-table="sweetheart" data-seat="1">
-                            <rect x="508" y="97" width="24" height="12" fill="#6ee7b7" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
-                            <rect x="506" y="107" width="28" height="20" fill="#6ee7b7" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
-                            <line x1="510" y1="127" x2="510" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
-                            <line x1="530" y1="127" x2="530" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                            <rect x="508" y="97" width="24" height="12" fill="#C1E1C1" stroke="#228B22" stroke-width="2" rx="4"/>
+                            <rect x="506" y="107" width="28" height="20" fill="#C1E1C1" stroke="#228B22" stroke-width="2" rx="3"/>
+                            <line x1="510" y1="127" x2="510" y2="135" stroke="#228B22" stroke-width="2"/>
+                            <line x1="530" y1="127" x2="530" y2="135" stroke="#228B22" stroke-width="2"/>
                         </g>
                         <g class="chair" data-table="sweetheart" data-seat="2">
-                            <rect x="568" y="97" width="24" height="12" fill="#6ee7b7" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
-                            <rect x="566" y="107" width="28" height="20" fill="#6ee7b7" stroke="#94a3b8" stroke-width="1.5" rx="3"/>
-                            <line x1="570" y1="127" x2="570" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
-                            <line x1="590" y1="127" x2="590" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                            <rect x="568" y="97" width="24" height="12" fill="#C1E1C1" stroke="#228B22" stroke-width="2" rx="4"/>
+                            <rect x="566" y="107" width="28" height="20" fill="#C1E1C1" stroke="#228B22" stroke-width="2" rx="3"/>
+                            <line x1="570" y1="127" x2="570" y2="135" stroke="#228B22" stroke-width="2"/>
+                            <line x1="590" y1="127" x2="590" y2="135" stroke="#228B22" stroke-width="2"/>
                         </g>
                         
                         <!-- TABLE 1 CHAIRS (12 chairs: 6 on each side) -->
@@ -1936,17 +1936,18 @@
             // Reset all chairs to default colors
             document.querySelectorAll('.chair').forEach(chair => {
                 const isSweetheart = chair.getAttribute('data-table') === 'sweetheart';
-                const defaultFill = isSweetheart ? '#6ee7b7' : '#e2e8f0'; // Jungle green for sweetheart, gray for others
-                const defaultStroke = '#94a3b8';
+                const defaultFill = isSweetheart ? '#C1E1C1' : '#e2e8f0'; // Soft mint green for sweetheart, gray for others
+                const defaultStroke = isSweetheart ? '#228B22' : '#94a3b8';
+                const defaultStrokeWidth = isSweetheart ? '2' : '1.5';
                 
                 chair.querySelectorAll('rect').forEach(rect => {
                     rect.setAttribute('fill', defaultFill);
                     rect.setAttribute('stroke', defaultStroke);
-                    rect.setAttribute('stroke-width', '1.5');
+                    rect.setAttribute('stroke-width', defaultStrokeWidth);
                 });
                 chair.querySelectorAll('line').forEach(line => {
                     line.setAttribute('stroke', defaultStroke);
-                    line.setAttribute('stroke-width', '1.5');
+                    line.setAttribute('stroke-width', defaultStrokeWidth);
                 });
             });
 
@@ -1996,9 +1997,9 @@
             // Sweetheart table
             const sweetheartTableRect = document.querySelector('#sweetheart-table rect');
             if (sweetheartTableRect) {
-                sweetheartTableRect.setAttribute('fill', '#10b981');
-                sweetheartTableRect.setAttribute('stroke', '#047857');
-                sweetheartTableRect.setAttribute('stroke-width', '2');
+                sweetheartTableRect.setAttribute('fill', '#C1E1C1');
+                sweetheartTableRect.setAttribute('stroke', '#228B22');
+                sweetheartTableRect.setAttribute('stroke-width', '2.5');
             }
 
             // Highlight the selected table
@@ -2006,9 +2007,9 @@
             if (guestTable === 'sweetheart') {
                 const sweetheartTable = document.querySelector('#sweetheart-table rect');
                 if (sweetheartTable) {
-                    sweetheartTable.setAttribute('fill', '#10b981'); // Keep jungle green
-                    sweetheartTable.setAttribute('stroke', '#059669'); // Brighter emerald border
-                    sweetheartTable.setAttribute('stroke-width', '3');
+                    sweetheartTable.setAttribute('fill', '#C1E1C1'); // Keep soft mint green
+                    sweetheartTable.setAttribute('stroke', '#228B22'); // Forest green border
+                    sweetheartTable.setAttribute('stroke-width', '3.5');
                 }
             } else {
                 // Find the table rectangle (they're the large rectangles with specific positions)
@@ -2025,8 +2026,8 @@
                 if (pos) {
                     const tableRect = document.querySelector(`svg rect[x="${pos.x}"][y="${pos.y}"]`);
                     if (tableRect) {
-                        tableRect.setAttribute('fill', '#bfdbfe'); // Brighter light blue highlight
-                        tableRect.setAttribute('stroke', '#2563eb'); // Brighter blue border
+                        tableRect.setAttribute('fill', '#F5DEB3'); // Light gold/wheat (matches companion chairs)
+                        tableRect.setAttribute('stroke', '#C9A882'); // Gold border (matches companion chairs)
                         tableRect.setAttribute('stroke-width', '3');
                     }
                 }

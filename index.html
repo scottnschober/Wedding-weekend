@@ -1935,45 +1935,56 @@
                 <div class="result-detail">${seatedWith || guest.notes || 'See you there!'}</div>
             `;
 
-            // Re-render all seats with highlighting
-            const container = document.getElementById('seats-container');
-            if (!container) return;
-            
-            let seatsHTML = '';
-            
-            // Helper to check if seat should be highlighted
-            const isPrimary = (table, seat) => guest.table == table && guest.seat == seat;
-            const isSecondary = (table, seat) => companionSeats.some(c => c.table == table && c.seat == seat);
-            
-            // Sweetheart table
-            seatsHTML += createChairSVG(520, 115, 1, 'sweetheart', true, false, isPrimary('sweetheart', 1), isSecondary('sweetheart', 1));
-            seatsHTML += createChairSVG(580, 115, 2, 'sweetheart', true, false, isPrimary('sweetheart', 2), isSecondary('sweetheart', 2));
-            
-            // Table 1
-            const table1X = 100;
-            for (let i = 0; i < 6; i++) {
-                seatsHTML += createChairSVG(table1X - 40, 220 + i * 50, i + 1, '1', false, false, isPrimary('1', i + 1), isSecondary('1', i + 1));
-                seatsHTML += createChairSVG(table1X + 40, 220 + i * 50, i + 7, '1', false, false, isPrimary('1', i + 7), isSecondary('1', i + 7));
+            // Reset all chairs to default colors
+            document.querySelectorAll('.chair').forEach(chair => {
+                const isSweetheart = chair.getAttribute('data-table') === 'sweetheart';
+                const defaultFill = isSweetheart ? '#fde68a' : '#e2e8f0';
+                const defaultStroke = '#94a3b8';
+                
+                chair.querySelectorAll('rect').forEach(rect => {
+                    rect.setAttribute('fill', defaultFill);
+                    rect.setAttribute('stroke', defaultStroke);
+                    rect.setAttribute('stroke-width', '1.5');
+                });
+                chair.querySelectorAll('line').forEach(line => {
+                    line.setAttribute('stroke', defaultStroke);
+                    line.setAttribute('stroke-width', '1.5');
+                });
+            });
+
+            // Highlight the guest's specific chair (primary - GOLD)
+            if (guest.seat) {
+                const guestChair = document.querySelector(`.chair[data-table="${guest.table}"][data-seat="${guest.seat}"]`);
+                if (guestChair) {
+                    guestChair.querySelectorAll('rect').forEach(rect => {
+                        rect.setAttribute('fill', '#C9A882');
+                        rect.setAttribute('stroke', '#C9A882');
+                        rect.setAttribute('stroke-width', '2.5');
+                    });
+                    guestChair.querySelectorAll('line').forEach(line => {
+                        line.setAttribute('stroke', '#C9A882');
+                        line.setAttribute('stroke-width', '2.5');
+                    });
+                }
             }
-            
-            // Table 2
-            const table2X = 260;
-            for (let i = 0; i < 6; i++) {
-                seatsHTML += createChairSVG(table2X - 40, 220 + i * 50, i + 1, '2', false, false, isPrimary('2', i + 1), isSecondary('2', i + 1));
-                seatsHTML += createChairSVG(table2X + 40, 220 + i * 50, i + 7, '2', false, false, isPrimary('2', i + 7), isSecondary('2', i + 7));
-            }
-            
-            // Tables 3-6
-            const tableXs = [420, 580, 740, 900];
-            tableXs.forEach((tableX, tableIndex) => {
-                const tableNum = String(tableIndex + 3);
-                for (let i = 0; i < 4; i++) {
-                    seatsHTML += createChairSVG(tableX - 40, 320 + i * 50, i + 1, tableNum, false, false, isPrimary(tableNum, i + 1), isSecondary(tableNum, i + 1));
-                    seatsHTML += createChairSVG(tableX + 40, 320 + i * 50, i + 5, tableNum, false, false, isPrimary(tableNum, i + 5), isSecondary(tableNum, i + 5));
+
+            // Highlight companion chairs (secondary - LIGHT GOLD)
+            companionSeats.forEach(({ table, seat }) => {
+                if (seat) {
+                    const companionChair = document.querySelector(`.chair[data-table="${table}"][data-seat="${seat}"]`);
+                    if (companionChair) {
+                        companionChair.querySelectorAll('rect').forEach(rect => {
+                            rect.setAttribute('fill', 'rgba(201, 168, 130, 0.5)');
+                            rect.setAttribute('stroke', '#C9A882');
+                            rect.setAttribute('stroke-width', '2');
+                        });
+                        companionChair.querySelectorAll('line').forEach(line => {
+                            line.setAttribute('stroke', '#C9A882');
+                            line.setAttribute('stroke-width', '2');
+                        });
+                    }
                 }
             });
-            
-            container.innerHTML = seatsHTML;
         }
 
         // Autocomplete functionality

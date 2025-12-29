@@ -154,7 +154,7 @@
             border-radius: 2px;
             box-shadow: 0 2px 20px rgba(74, 66, 56, 0.08);
             text-align: center;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -483,7 +483,7 @@
         .venue-layout {
             position: relative;
             width: 100%;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -843,141 +843,66 @@
 
             <div class="diagram-section">
                 <div class="venue-layout" id="venueDiagram">
-                    <svg viewBox="0 0 1800 850" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Sweetheart Table - Top Center -->
-                        <g id="sweetheart-group">
-                            <text x="900" y="30" class="table-label">Sweetheart Table</text>
-                            <rect class="table-rect" x="800" y="50" width="200" height="80" rx="3"/>
-                            <!-- 2 Chairs -->
-                            <g class="chair" data-table="sweetheart" data-seat="1">
-                                <rect class="chair-rect" x="860" y="25" width="22" height="22" rx="2"/>
-                            </g>
-                            <g class="chair" data-table="sweetheart" data-seat="2">
-                                <rect class="chair-rect" x="920" y="25" width="22" height="22" rx="2"/>
-                            </g>
+                    <svg viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                        <!-- Ocean/Beach Background -->
+                        <defs>
+                            <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color: #0ea5e9; stop-opacity: 0.3" />
+                                <stop offset="50%" style="stop-color: #06b6d4; stop-opacity: 0.2" />
+                                <stop offset="100%" style="stop-color: #f0f9ff; stop-opacity: 0.1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Ocean area -->
+                        <rect x="0" y="0" width="1000" height="80" fill="url(#oceanGradient)" />
+                        
+                        <!-- Beach waves decoration -->
+                        <path d="M 0 70 Q 50 60, 100 70 T 200 70 T 300 70 T 400 70 T 500 70 T 600 70 T 700 70 T 800 70 T 900 70 T 1000 70" 
+                              fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.4"/>
+                        <path d="M 0 75 Q 50 68, 100 75 T 200 75 T 300 75 T 400 75 T 500 75 T 600 75 T 700 75 T 800 75 T 900 75 T 1000 75" 
+                              fill="none" stroke="#0ea5e9" stroke-width="1" opacity="0.3"/>
+                        
+                        <!-- Ocean/Beach label -->
+                        <text x="500" y="30" text-anchor="middle" fill="#0c4a6e" font-size="16" font-weight="600" opacity="0.7">
+                            🌊 Ocean View 🌊
+                        </text>
+                        <text x="500" y="55" text-anchor="middle" fill="#075985" font-size="11" opacity="0.6">
+                            Beach Behind Sweetheart Table
+                        </text>
+                        
+                        <!-- Sweetheart Table -->
+                        <g id="sweetheart-table">
+                            <rect x="480" y="130" width="140" height="60" fill="#fbbf24" stroke="#f59e0b" stroke-width="2" rx="8"/>
+                            <text x="550" y="155" text-anchor="middle" fill="#78350f" font-size="12" font-weight="600">Sweetheart Table</text>
+                            <text x="550" y="175" text-anchor="middle" font-size="20">💕</text>
                         </g>
                         
-                        <!-- TABLE 1 - Left, 12 seats (6 per side) -->
-                        <g id="table1-group">
-                            <text x="190" y="180" class="table-label">Table 1</text>
-                            <rect class="table-rect" x="90" y="200" width="200" height="500" rx="3"/>
-                            <text x="190" y="465" class="table-number">1</text>
-                            
-                            <!-- Left side chairs (6) -->
-                            <g class="chair" data-table="1" data-seat="1"><rect class="chair-rect" x="60" y="220" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="2"><rect class="chair-rect" x="60" y="306" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="3"><rect class="chair-rect" x="60" y="392" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="4"><rect class="chair-rect" x="60" y="478" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="5"><rect class="chair-rect" x="60" y="564" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="6"><rect class="chair-rect" x="60" y="650" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (6) -->
-                            <g class="chair" data-table="1" data-seat="7"><rect class="chair-rect" x="298" y="220" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="8"><rect class="chair-rect" x="298" y="306" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="9"><rect class="chair-rect" x="298" y="392" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="10"><rect class="chair-rect" x="298" y="478" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="11"><rect class="chair-rect" x="298" y="564" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="1" data-seat="12"><rect class="chair-rect" x="298" y="650" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 1 -->
+                        <rect x="60" y="220" width="80" height="250" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="100" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 1</text>
                         
-                        <!-- TABLE 2 - Left-Center, 12 seats (6 per side) -->
-                        <g id="table2-group">
-                            <text x="450" y="180" class="table-label">Table 2</text>
-                            <rect class="table-rect" x="350" y="200" width="200" height="500" rx="3"/>
-                            <text x="450" y="465" class="table-number">2</text>
-                            
-                            <!-- Left side chairs (6) -->
-                            <g class="chair" data-table="2" data-seat="1"><rect class="chair-rect" x="320" y="220" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="2"><rect class="chair-rect" x="320" y="306" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="3"><rect class="chair-rect" x="320" y="392" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="4"><rect class="chair-rect" x="320" y="478" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="5"><rect class="chair-rect" x="320" y="564" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="6"><rect class="chair-rect" x="320" y="650" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (6) -->
-                            <g class="chair" data-table="2" data-seat="7"><rect class="chair-rect" x="558" y="220" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="8"><rect class="chair-rect" x="558" y="306" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="9"><rect class="chair-rect" x="558" y="392" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="10"><rect class="chair-rect" x="558" y="478" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="11"><rect class="chair-rect" x="558" y="564" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="2" data-seat="12"><rect class="chair-rect" x="558" y="650" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 2 -->
+                        <rect x="220" y="220" width="80" height="250" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="260" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 2</text>
                         
-                        <!-- TABLE 3 - Center-Left, 8 seats (4 per side) CENTERED -->
-                        <g id="table3-group">
-                            <text x="730" y="180" class="table-label">Table 3</text>
-                            <rect class="table-rect" x="660" y="200" width="140" height="500" rx="3"/>
-                            <text x="730" y="465" class="table-number">3</text>
-                            
-                            <!-- Left side chairs (4) -->
-                            <g class="chair" data-table="3" data-seat="1"><rect class="chair-rect" x="630" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="2"><rect class="chair-rect" x="630" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="3"><rect class="chair-rect" x="630" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="4"><rect class="chair-rect" x="630" y="598" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (4) -->
-                            <g class="chair" data-table="3" data-seat="5"><rect class="chair-rect" x="808" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="6"><rect class="chair-rect" x="808" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="7"><rect class="chair-rect" x="808" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="3" data-seat="8"><rect class="chair-rect" x="808" y="598" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 3 -->
+                        <rect x="380" y="320" width="80" height="150" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="420" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 3</text>
                         
-                        <!-- TABLE 4 - Center-Right, 8 seats (4 per side) CENTERED -->
-                        <g id="table4-group">
-                            <text x="990" y="180" class="table-label">Table 4</text>
-                            <rect class="table-rect" x="920" y="200" width="140" height="500" rx="3"/>
-                            <text x="990" y="465" class="table-number">4</text>
-                            
-                            <!-- Left side chairs (4) -->
-                            <g class="chair" data-table="4" data-seat="1"><rect class="chair-rect" x="890" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="2"><rect class="chair-rect" x="890" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="3"><rect class="chair-rect" x="890" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="4"><rect class="chair-rect" x="890" y="598" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (4) -->
-                            <g class="chair" data-table="4" data-seat="5"><rect class="chair-rect" x="1068" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="6"><rect class="chair-rect" x="1068" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="7"><rect class="chair-rect" x="1068" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="4" data-seat="8"><rect class="chair-rect" x="1068" y="598" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 4 -->
+                        <rect x="540" y="320" width="80" height="150" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="580" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 4</text>
                         
-                        <!-- TABLE 5 - Right-Center, 8 seats (4 per side) -->
-                        <g id="table5-group">
-                            <text x="1250" y="180" class="table-label">Table 5</text>
-                            <rect class="table-rect" x="1180" y="200" width="140" height="500" rx="3"/>
-                            <text x="1250" y="465" class="table-number">5</text>
-                            
-                            <!-- Left side chairs (4) -->
-                            <g class="chair" data-table="5" data-seat="1"><rect class="chair-rect" x="1150" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="2"><rect class="chair-rect" x="1150" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="3"><rect class="chair-rect" x="1150" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="4"><rect class="chair-rect" x="1150" y="598" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (4) -->
-                            <g class="chair" data-table="5" data-seat="5"><rect class="chair-rect" x="1328" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="6"><rect class="chair-rect" x="1328" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="7"><rect class="chair-rect" x="1328" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="5" data-seat="8"><rect class="chair-rect" x="1328" y="598" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 5 -->
+                        <rect x="700" y="320" width="80" height="150" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="740" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 5</text>
                         
-                        <!-- TABLE 6 - Right, 8 seats (4 per side) -->
-                        <g id="table6-group">
-                            <text x="1510" y="180" class="table-label">Table 6</text>
-                            <rect class="table-rect" x="1440" y="200" width="140" height="500" rx="3"/>
-                            <text x="1510" y="465" class="table-number">6</text>
-                            
-                            <!-- Left side chairs (4) -->
-                            <g class="chair" data-table="6" data-seat="1"><rect class="chair-rect" x="1410" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="2"><rect class="chair-rect" x="1410" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="3"><rect class="chair-rect" x="1410" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="4"><rect class="chair-rect" x="1410" y="598" width="22" height="22" rx="2"/></g>
-                            
-                            <!-- Right side chairs (4) -->
-                            <g class="chair" data-table="6" data-seat="5"><rect class="chair-rect" x="1588" y="250" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="6"><rect class="chair-rect" x="1588" y="366" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="7"><rect class="chair-rect" x="1588" y="482" width="22" height="22" rx="2"/></g>
-                            <g class="chair" data-table="6" data-seat="8"><rect class="chair-rect" x="1588" y="598" width="22" height="22" rx="2"/></g>
-                        </g>
+                        <!-- Table 6 -->
+                        <rect x="860" y="320" width="80" height="150" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" rx="4" />
+                        <text x="900" y="510" text-anchor="middle" fill="#475569" font-size="14" font-weight="600">Table 6</text>
+                        
+                        <!-- Seats will be dynamically added by JavaScript -->
+                        <g id="seats-container"></g>
                     </svg>
                 </div>
             </div>
@@ -1629,12 +1554,7 @@
         let matchingGuests = [];
 
         // Show guest seating with individual chair highlighting
-        function showGuestSeating(guest) {
-            // Clear all highlights
-            document.querySelectorAll('.chair').forEach(chair => {
-                chair.classList.remove('highlight-primary', 'highlight-secondary');
-            });
-
+                function showGuestSeating(guest) {
             const tableText = guest.table === 'Sweetheart' || guest.table === 'sweetheart'
                 ? 'Sweetheart Table'
                 : `Table ${guest.table}`;
@@ -1662,26 +1582,45 @@
                 <div class="result-detail">${seatedWith || guest.notes || 'See you there!'}</div>
             `;
 
-            // Highlight the guest's specific chair (primary color)
-            if (guest.seat) {
-                const guestChair = document.querySelector(`.chair[data-table="${guest.table}"][data-seat="${guest.seat}"]`);
-                if (guestChair) {
-                    guestChair.classList.add('highlight-primary');
-                    
-                    // Scroll chair into view
-                    guestChair.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+            // Re-render all seats with highlighting
+            const container = document.getElementById('seats-container');
+            if (!container) return;
+            
+            let seatsHTML = '';
+            
+            // Helper to check if seat should be highlighted
+            const isPrimary = (table, seat) => guest.table == table && guest.seat == seat;
+            const isSecondary = (table, seat) => companionSeats.some(c => c.table == table && c.seat == seat);
+            
+            // Sweetheart table
+            seatsHTML += createChairSVG(520, 115, 1, 'sweetheart', true, false, isPrimary('sweetheart', 1), isSecondary('sweetheart', 1));
+            seatsHTML += createChairSVG(580, 115, 2, 'sweetheart', true, false, isPrimary('sweetheart', 2), isSecondary('sweetheart', 2));
+            
+            // Table 1
+            const table1X = 100;
+            for (let i = 0; i < 6; i++) {
+                seatsHTML += createChairSVG(table1X - 40, 220 + i * 50, i + 1, '1', false, false, isPrimary('1', i + 1), isSecondary('1', i + 1));
+                seatsHTML += createChairSVG(table1X + 40, 220 + i * 50, i + 7, '1', false, false, isPrimary('1', i + 7), isSecondary('1', i + 7));
             }
-
-            // Highlight companion chairs (secondary color)
-            companionSeats.forEach(({ table, seat }) => {
-                if (seat) {
-                    const companionChair = document.querySelector(`.chair[data-table="${table}"][data-seat="${seat}"]`);
-                    if (companionChair) {
-                        companionChair.classList.add('highlight-secondary');
-                    }
+            
+            // Table 2
+            const table2X = 260;
+            for (let i = 0; i < 6; i++) {
+                seatsHTML += createChairSVG(table2X - 40, 220 + i * 50, i + 1, '2', false, false, isPrimary('2', i + 1), isSecondary('2', i + 1));
+                seatsHTML += createChairSVG(table2X + 40, 220 + i * 50, i + 7, '2', false, false, isPrimary('2', i + 7), isSecondary('2', i + 7));
+            }
+            
+            // Tables 3-6
+            const tableXs = [420, 580, 740, 900];
+            tableXs.forEach((tableX, tableIndex) => {
+                const tableNum = String(tableIndex + 3);
+                for (let i = 0; i < 4; i++) {
+                    seatsHTML += createChairSVG(tableX - 40, 320 + i * 50, i + 1, tableNum, false, false, isPrimary(tableNum, i + 1), isSecondary(tableNum, i + 1));
+                    seatsHTML += createChairSVG(tableX + 40, 320 + i * 50, i + 5, tableNum, false, false, isPrimary(tableNum, i + 5), isSecondary(tableNum, i + 5));
                 }
             });
+            
+            container.innerHTML = seatsHTML;
         }
 
         // Autocomplete functionality

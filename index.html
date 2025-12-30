@@ -872,11 +872,15 @@
         <section id="home" class="section active">
             <div id="home-loading" class="loading">Loading...</div>
             
-            <!-- Announcements Section (dynamically populated) - ABOVE home content -->
+            <!-- Hero Image -->
+            <div id="hero-image" style="display: none;"></div>
+            
+            <!-- Announcements Section - Between hero and content -->
             <div id="announcements-section" style="display: none;">
                 <div class="announcements-container" id="announcements-container"></div>
             </div>
             
+            <!-- Welcome Content -->
             <div id="home-content" style="display: none;"></div>
         </section>
 
@@ -1518,16 +1522,23 @@
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
                 
-                const homeContent = document.getElementById('home-content');
                 const content = {};
                 data.forEach(row => {
                     content[row.Section] = row.Content;
                 });
                 
-                homeContent.innerHTML = `
+                // Insert hero image separately
+                const heroImage = document.getElementById('hero-image');
+                heroImage.innerHTML = `
                     <img src="https://drive.google.com/thumbnail?id=1-MWf_bMlhrNubhS4bTRzJaAxVnvHOycq&sz=w1920" 
                          alt="Scott & Melinda" 
                          class="hero-banner">
+                `;
+                heroImage.style.display = 'block';
+                
+                // Insert welcome content
+                const homeContent = document.getElementById('home-content');
+                homeContent.innerHTML = `
                     <h2 class="section-title">${content['Title'] || 'Welcome to Our Wedding Weekend'}</h2>
                     <div class="welcome-box">
                         <p class="welcome-text">${content['Paragraph 1'] || ''}</p>

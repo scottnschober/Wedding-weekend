@@ -931,7 +931,7 @@
             <button class="nav-tab active" onclick="showSection('home')">Home</button>
             <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
             <button class="nav-tab" onclick="showSection('map')">Map</button>
-            <button class="nav-tab" onclick="showSection('recommendations')">Recommendations</button>
+            <button class="nav-tab" onclick="showSection('recommendations')">Things To Do</button>
             <button class="nav-tab" onclick="showSection('photos')">Photos</button>
             <button class="nav-tab" onclick="showSection('travel')">Travel</button>
             <button class="nav-tab" onclick="showSection('faq')">FAQ</button>
@@ -1417,7 +1417,7 @@
 
         <!-- RECOMMENDATIONS SECTION -->
         <section id="recommendations" class="section">
-            <h2 class="section-title">Local Recommendations</h2>
+            <h2 class="section-title">Things To Do</h2>
             <div id="recommendations-loading" class="loading">Loading recommendations...</div>
             <div id="recommendations-content"></div>
         </section>
@@ -1830,12 +1830,18 @@
                     <div class="recommendations-category">
                         <div class="recommendations-category-header">${category}</div>
                         ${items.map(item => {
-                            const name = item.Link ? 
-                                `<a href="${item.Link}" target="_blank" rel="noopener">${item.Name}</a>` : 
+                            // Check for link in multiple possible column names
+                            const linkUrl = item.Link || item.link || item.URL || item.url || item['Link/URL'];
+                            const name = linkUrl ? 
+                                `<a href="${linkUrl}" target="_blank" rel="noopener">${item.Name}</a>` : 
                                 item.Name;
                             
                             const metaItems = [];
-                            if (item.Location) metaItems.push(`<div class="recommendation-meta-item">📍 ${item.Location}</div>`);
+                            const locationText = item.Location || item.location || item.Address || item.address || item['Location/Address'];
+                            if (locationText) {
+                                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationText)}`;
+                                metaItems.push(`<div class="recommendation-meta-item">📍 <a href="${mapsUrl}" target="_blank" rel="noopener" style="color: var(--warm-gray); text-decoration: none;">${locationText}</a></div>`);
+                            }
                             if (item['Price Range']) metaItems.push(`<div class="recommendation-meta-item recommendation-price">${item['Price Range']}</div>`);
                             
                             return `

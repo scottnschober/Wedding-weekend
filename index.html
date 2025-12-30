@@ -625,6 +625,78 @@
             }
         }
 
+        /* Recommendations Section Styles */
+        .recommendations-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .recommendations-category-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .recommendation-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 12px rgba(74, 66, 56, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .recommendation-card:hover {
+            box-shadow: 0 4px 20px rgba(74, 66, 56, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .recommendation-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-name a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .recommendation-name a:hover {
+            color: var(--dark-gray);
+        }
+
+        .recommendation-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .recommendation-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+        }
+
+        .recommendation-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .recommendation-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* Responsive */
 
         /* Responsive */
@@ -859,10 +931,11 @@
             <button class="nav-tab active" onclick="showSection('home')">Home</button>
             <button class="nav-tab" onclick="showSection('schedule')">Schedule</button>
             <button class="nav-tab" onclick="showSection('map')">Map</button>
-            <button class="nav-tab" onclick="showSection('seating')">Seating</button>
+            <button class="nav-tab" onclick="showSection('recommendations')">Recommendations</button>
             <button class="nav-tab" onclick="showSection('photos')">Photos</button>
             <button class="nav-tab" onclick="showSection('travel')">Travel</button>
             <button class="nav-tab" onclick="showSection('faq')">FAQ</button>
+            <button class="nav-tab" onclick="showSection('seating')">Reception Seating</button>
         </div>
     </nav>
 
@@ -908,7 +981,7 @@
 
         <!-- SEATING SECTION -->
         <section id="seating" class="section">
-            <h2 class="section-title">Find Your Seat</h2>
+            <h2 class="section-title">Reception Seating</h2>
             
             <div class="search-section">
                 <div class="search-box">
@@ -1342,6 +1415,13 @@
             </div>
         </section>
 
+        <!-- RECOMMENDATIONS SECTION -->
+        <section id="recommendations" class="section">
+            <h2 class="section-title">Local Recommendations</h2>
+            <div id="recommendations-loading" class="loading">Loading recommendations...</div>
+            <div id="recommendations-content"></div>
+        </section>
+
         <!-- PHOTOS SECTION -->
         <section id="photos" class="section">
             <h2 class="section-title">Wedding Weekend Photos & Videos</h2>
@@ -1436,7 +1516,8 @@
             travel: `${SHEET_BASE_URL}?gid=93860544&single=true&output=csv`,
             mapEvents: `${SHEET_BASE_URL}?gid=1344707168&single=true&output=csv`,
             home: `${SHEET_BASE_URL}?gid=895216545&single=true&output=csv`,
-            announcements: `${SHEET_BASE_URL}?gid=2088830567&single=true&output=csv`
+            announcements: `${SHEET_BASE_URL}?gid=2088830567&single=true&output=csv`,
+            recommendations: `${SHEET_BASE_URL}?gid=2010276729&single=true&output=csv`
         };
 
         // CSV Parser - Enhanced to handle multi-line cells with quotes
@@ -1714,6 +1795,64 @@
             } catch (error) {
                 console.error('Error loading travel:', error);
                 document.getElementById('travel-loading').textContent = 'Error loading travel info. Please refresh the page.';
+            }
+        }
+
+        // Load Recommendations
+        async function loadRecommendations() {
+            try {
+                const response = await fetch(SHEETS.recommendations);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                
+                const recommendationsContent = document.getElementById('recommendations-content');
+                
+                // Group by category
+                const groupedByCategory = {};
+                data.forEach(item => {
+                    const category = item.Category || 'Other';
+                    if (!groupedByCategory[category]) {
+                        groupedByCategory[category] = [];
+                    }
+                    
+                    // Sort by Order if provided
+                    const order = parseInt(item.Order) || 999;
+                    groupedByCategory[category].push({ ...item, sortOrder: order });
+                });
+                
+                // Sort items within each category by Order
+                Object.keys(groupedByCategory).forEach(category => {
+                    groupedByCategory[category].sort((a, b) => a.sortOrder - b.sortOrder);
+                });
+                
+                // Build HTML
+                recommendationsContent.innerHTML = Object.entries(groupedByCategory).map(([category, items]) => `
+                    <div class="recommendations-category">
+                        <div class="recommendations-category-header">${category}</div>
+                        ${items.map(item => {
+                            const name = item.Link ? 
+                                `<a href="${item.Link}" target="_blank" rel="noopener">${item.Name}</a>` : 
+                                item.Name;
+                            
+                            const metaItems = [];
+                            if (item.Location) metaItems.push(`<div class="recommendation-meta-item">📍 ${item.Location}</div>`);
+                            if (item['Price Range']) metaItems.push(`<div class="recommendation-meta-item recommendation-price">${item['Price Range']}</div>`);
+                            
+                            return `
+                                <div class="recommendation-card">
+                                    <div class="recommendation-name">${name}</div>
+                                    ${item.Description ? `<div class="recommendation-description">${item.Description}</div>` : ''}
+                                    ${metaItems.length > 0 ? `<div class="recommendation-meta">${metaItems.join('')}</div>` : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `).join('');
+                
+                document.getElementById('recommendations-loading').style.display = 'none';
+            } catch (error) {
+                console.error('Error loading recommendations:', error);
+                document.getElementById('recommendations-loading').textContent = 'Error loading recommendations. Please refresh the page.';
             }
         }
 
@@ -2352,6 +2491,7 @@
                 loadAnnouncements(),
                 loadSchedule(),
                 loadMapEvents(),
+                loadRecommendations(),
                 loadTravel(),
                 loadFAQ(),
                 loadGuestData(),

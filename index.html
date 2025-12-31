@@ -1517,7 +1517,8 @@
             mapEvents: `${SHEET_BASE_URL}?gid=1344707168&single=true&output=csv`,
             home: `${SHEET_BASE_URL}?gid=895216545&single=true&output=csv`,
             announcements: `${SHEET_BASE_URL}?gid=2088830567&single=true&output=csv`,
-            recommendations: `${SHEET_BASE_URL}?gid=2010276729&single=true&output=csv`
+            recommendations: `${SHEET_BASE_URL}?gid=2010276729&single=true&output=csv`,
+            sectionVisibility: `${SHEET_BASE_URL}?gid=1991566280&single=true&output=csv`
         };
 
         // CSV Parser - Enhanced to handle multi-line cells with quotes
@@ -2498,8 +2499,68 @@
             }
         });
 
+        // Load Section Visibility Settings
+        async function loadSectionVisibility() {
+            try {
+                const response = await fetch(SHEETS.sectionVisibility);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                
+                // Create a map of section visibility
+                const visibilityMap = {};
+                data.forEach(row => {
+                    const section = row.Section;
+                    const visible = row.Visible;
+                    // Check if visible is TRUE (case insensitive) or 1
+                    visibilityMap[section] = (
+                        visible && (
+                            visible.toLowerCase() === 'true' || 
+                            visible === '1' || 
+                            visible.toLowerCase() === 'yes'
+                        )
+                    );
+                });
+                
+                // Map section names to their tab/section IDs
+                const sectionMapping = {
+                    'Schedule': 'schedule',
+                    'Map': 'map',
+                    'Things To Do': 'recommendations',
+                    'Photos': 'photos',
+                    'Travel & Transportation': 'travel',
+                    'FAQ': 'faq',
+                    'Reception Seating': 'seating'
+                };
+                
+                // Hide tabs and sections that are set to FALSE
+                Object.entries(sectionMapping).forEach(([displayName, sectionId]) => {
+                    if (visibilityMap[displayName] === false) {
+                        // Hide the navigation tab
+                        const navTab = document.querySelector(`.nav-tab[onclick="showSection('${sectionId}')"]`);
+                        if (navTab) {
+                            navTab.style.display = 'none';
+                        }
+                        
+                        // Hide the section
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.style.display = 'none';
+                        }
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading section visibility:', error);
+                // If there's an error, show all sections (fail-safe)
+            }
+        }
+
         // Initialize
         async function init() {
+            // Load section visibility first to hide/show tabs
+            await loadSectionVisibility();
+            
+            // Then load all content
             await Promise.all([
                 loadHome(),
                 loadAnnouncements(),

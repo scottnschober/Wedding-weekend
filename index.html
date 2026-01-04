@@ -1627,6 +1627,12 @@
                         <div class="event-date">${content['Subtitle'] || 'January 29 - February 1, 2026'}</div>
                         <p class="welcome-text">${content['Paragraph 2'] || ''}</p>
                     </div>
+                    ${content['Our Story'] ? `
+                    <div class="welcome-box" style="margin-top: 3rem;">
+                        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Our Story</h3>
+                        <p class="welcome-text">${content['Our Story']}</p>
+                    </div>
+                    ` : ''}
                 `;
                 
                 document.getElementById('home-loading').style.display = 'none';
@@ -1794,8 +1800,7 @@
                             ${content['Hotel Address'] || ''}<br><br>
                             ${content['Booking Info'] || ''}<br>
                             <strong>Email:</strong> ${content['Booking Email'] || ''}<br>
-                            <strong>Phone:</strong> ${content['Booking Phone'] || ''}<br><br>
-                            <strong>Recommended Dates:</strong> ${content['Recommended Dates'] || ''}
+                            <strong>Phone:</strong> ${content['Booking Phone'] || ''}
                         </p>
                     </div>
                 `;

@@ -2579,7 +2579,20 @@
             ]);
         }
 
-        init();
+        // Initialize and check URL parameters
+        init().then(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const section = urlParams.get('section');
+            
+            if (section) {
+                // Wait a moment for content to load, then show the section
+                setTimeout(() => {
+                    showSection(section);
+                    // Scroll to top smoothly
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 500);
+            }
+        });
     </script>
 </body>
 </html>

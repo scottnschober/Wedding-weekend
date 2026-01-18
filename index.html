@@ -2122,31 +2122,19 @@
             });
             
             document.getElementById(sectionId).classList.add('active');
-            event.target.classList.add('active');
-            
-            // Save current tab to localStorage
-            localStorage.setItem('activeTab', sectionId);
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Restore active tab on page load
-        window.addEventListener('load', () => {
-            const savedTab = localStorage.getItem('activeTab');
-            if (savedTab && document.getElementById(savedTab)) {
-                // Remove default active state
-                document.querySelector('.section.active')?.classList.remove('active');
-                document.querySelector('.nav-tab.active')?.classList.remove('active');
-                
-                // Set saved tab as active
-                document.getElementById(savedTab).classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // If called programmatically, activate the corresponding nav tab
                 const tabButton = Array.from(document.querySelectorAll('.nav-tab'))
-                    .find(btn => btn.textContent.trim().toLowerCase() === savedTab.toLowerCase());
+                    .find(btn => btn.getAttribute('onclick')?.includes(sectionId));
                 if (tabButton) {
                     tabButton.classList.add('active');
                 }
             }
-        });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Map Interaction
         document.querySelectorAll('.map-location').forEach(location => {
